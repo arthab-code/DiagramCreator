@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Grafik
 {
@@ -21,13 +18,13 @@ namespace Grafik
         public char[] Shift
         {
             get => _shift; 
-            set { _shift = value; }
+            set => _shift = value; 
         }
 
         public Dictionary<byte, char[]> Diagram
         {
             get =>  _diagram; 
-            set { _diagram = value; }
+            set => _diagram = value; 
         }
     }
 }

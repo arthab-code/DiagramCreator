@@ -56,8 +56,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FileSystemSave.cs" />
+    <Compile Include="ILoadWorker.cs" />
     <Compile Include="ISaveWorker.cs" />
     <Compile Include="IWorkerBuilder.cs" />
+    <Compile Include="LoadWorkerFromFile.cs" />
     <Compile Include="MonthlyDays.cs" />
     <Compile Include="WorkDiagram.cs" />
     <Compile Include="Worker.cs" />

@@ -14,13 +14,13 @@ namespace Grafik
         public string PlaceName
         {
             get => _placeName; 
-            set { _placeName = value; }
+            set => _placeName = value; 
         }
 
         public string CityOfPlace
         {
             get => _cityOfPlace; 
-            set { _cityOfPlace = value; }
+            set => _cityOfPlace = value; 
         }
     }
 }
