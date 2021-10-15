@@ -9,6 +9,7 @@ namespace Grafik
     public interface ISaveWorker
     {
         void SaveWorkerToDatabase();
+        void SetWorker(Worker worker);
 
     }
 }

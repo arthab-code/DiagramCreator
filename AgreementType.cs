@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Grafik
 {
-    public interface ILoadWorker
+    public enum AgreementType
     {
-        List<Worker> LoadAllWorkers();
+        Permanent,
+        Other
     }
 }

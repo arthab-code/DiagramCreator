@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Grafik
 {
-    public interface ILoadWorker
+    public interface ILoadWorkPlace
     {
-        List<Worker> LoadAllWorkers();
+        List<string> LoadAllPlaces();
     }
 }

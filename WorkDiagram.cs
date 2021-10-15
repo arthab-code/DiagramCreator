@@ -5,26 +5,22 @@ namespace Grafik
 {
     public class WorkDiagram
     {
-        private char[] _shift;
-        private Dictionary<byte, char[]> _diagram;  // key = number of day || value = array of shift -> day or night
-        private int _shiftArraySize;
+        private char[,] _workFullDiagram;
+        private List<Worker> _permanentWorkers;
+        private List<Worker> _otherAgreementWorkers;
 
-        public WorkDiagram(int numberOfVarancy)
+        public WorkDiagram(int monthDays)
         {
-            _shiftArraySize = numberOfVarancy * 2;
-            _shift = new char[_shiftArraySize];  //even = daily shift || odd = nightly shift
+            _workFullDiagram = new char[4, monthDays];
+
+            _permanentWorkers = new List<Worker>();
+            _otherAgreementWorkers = new List<Worker>();
         }
 
-        public char[] Shift
-        {
-            get => _shift; 
-            set => _shift = value; 
-        }
-
-        public Dictionary<byte, char[]> Diagram
-        {
-            get =>  _diagram; 
-            set => _diagram = value; 
+        public char[,] WorkFullDiagram 
+        { 
+            get => _workFullDiagram; 
+            set => _workFullDiagram = value; 
         }
     }
 }

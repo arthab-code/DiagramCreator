@@ -13,6 +13,7 @@ namespace Grafik
         IWorkerBuilder SetWorkPlaceName(string workPlaceName);
         IWorkerBuilder SetWorkDaysPerMonth(int workDaysPerMonth);
         IWorkerBuilder SetWorkType(WorkType workType);
+        IWorkerBuilder SetAgreementType(AgreementType agreementType);
         Worker Build();
 
     }

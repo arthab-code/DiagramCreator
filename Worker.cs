@@ -18,12 +18,12 @@ namespace Grafik
         private int _driverHoursNight;
         private int _executiveHoursNight;
         private WorkType _workType;
-        private WorkDiagram _workDiagram;
+        private AgreementType _agreementType;
+        private char[,] _workDiagram;
 
         public Worker()
         {
             _freeDays = new List<byte>();
-            _workDiagram = new WorkDiagram(1);
         }
 
         public string Name
@@ -62,12 +62,6 @@ namespace Grafik
             set => _workType = value; 
         }
 
-        public WorkDiagram WorkDiagram
-        {
-            get => _workDiagram; 
-            set => _workDiagram = value; 
-        }
-
         public int DriverHoursDay 
         { 
             get => _driverHoursDay; 
@@ -87,6 +81,16 @@ namespace Grafik
         {
             get => _executiveHoursNight;
             set => _executiveHoursNight = value; 
+        }
+        public AgreementType AgreementType 
+        { 
+            get => _agreementType; 
+            set => _agreementType = value; 
+        }
+        public char[,] WorkDiagram 
+        { 
+            get => _workDiagram; 
+            set => _workDiagram = value; 
         }
     }
 }

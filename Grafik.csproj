@@ -64,6 +64,7 @@
     <Compile Include="WorkDiagram.cs" />
     <Compile Include="Worker.cs" />
     <Compile Include="WorkerBuilder.cs" />
+    <Compile Include="WorkersDatabase.cs" />
     <Compile Include="WorkPlace.cs" />
     <Compile Include="WorkType.cs" />
     <Page Include="MainWindow.xaml">

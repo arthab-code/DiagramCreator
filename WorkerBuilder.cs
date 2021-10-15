@@ -43,5 +43,11 @@ namespace Grafik
             _worker.WorkType = workType;
             return this;
         }
+
+        public IWorkerBuilder SetAgreementType(AgreementType agreementType)
+        {
+            _worker.AgreementType = agreementType;
+            return this;
+        }
     }
 }
