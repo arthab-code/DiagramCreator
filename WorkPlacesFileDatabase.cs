@@ -20,7 +20,13 @@ namespace Grafik
 
         public void DeleteWorkPlace(string name)
         {
-            throw new NotImplementedException();
+            if (Directory.Exists(_paths._workerPlacePath + "\\" + name))
+            {
+                Directory.Delete(_paths._workerPlacePath + "\\" + name, true);
+                Console.WriteLine("Pomyslnie usunales miejsce pracy");
+                return;
+            }
+            Console.WriteLine("NIE ISTNIEJE");
         }
 
         public List<string> ReadWorkPlaces()

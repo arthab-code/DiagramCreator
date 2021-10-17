@@ -8,8 +8,8 @@ namespace Grafik
 {
     public class Paths
     {
-        public string _workersPath = "AppData/Workers";
-        public string _workerPlacePath = "AppData/WorkPlaces";
+        public string _workersPath = "AppData\\Workers";
+        public string _workerPlacePath = "AppData\\WorkPlaces";
         public string _workerDataFile = "data.txt";
     }
 }

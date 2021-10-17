@@ -39,7 +39,16 @@ namespace Grafik
 
         public void DeleteWorker(string name, string surname)
         {
-            throw new NotImplementedException();
+            _workerName.Name = name;
+            _workerName.Surname = surname;
+
+            if (Directory.Exists(_paths._workersPath+"\\"+ _workerName.GetFullName()))
+            {
+                Directory.Delete(_paths._workersPath + "\\" + _workerName.GetFullName(), true);
+                Console.WriteLine("Pomyslnie wyjebales chuja");
+                return;
+            }
+            Console.WriteLine("NIE ISTNIEJE");
         }
 
         public Worker ReadWorker(string name, string surname)
@@ -64,19 +73,26 @@ namespace Grafik
                 tempWorker.WorkType = (WorkType)workTypeTemp;
                 int agreementTypeTemp = int.Parse(streamReader.ReadLine());
                 tempWorker.AgreementType = (AgreementType)agreementTypeTemp;
-                tempWorker.FreeDays = null;
+                tempWorker.DriverHoursDay = int.Parse(streamReader.ReadLine());
+
+
+                streamReader.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-
+           
             return tempWorker;
         }
 
         public void UpdateWorker(Worker worker)
         {
-            throw new NotImplementedException();
+            _workerName.Name = worker.Name;
+            _workerName.Surname = worker.Surname;
+            _worker = worker;
+
+            WriteConfigFile();
         }
 
         private void CreateWorkerDirectory()
@@ -116,6 +132,8 @@ namespace Grafik
             using (FileStream fs = File.Create(workerPath))
             {
                 Console.WriteLine("CREATE FILE PATH : " + workerPath);
+
+                fs.Close();
             }
         }
 
@@ -133,7 +151,7 @@ namespace Grafik
             var workType = workTypeTemp.ToString();
             int agreementTypeTemp = (int)_worker.AgreementType;
             var agreementType = agreementTypeTemp.ToString();
-            var freeDays = "null";
+            var driverHoursDay = _worker.DriverHoursDay.ToString();
 
             using (StreamWriter streamWriter = new StreamWriter(workerPath))
             {
@@ -143,7 +161,9 @@ namespace Grafik
                 streamWriter.WriteLine(workDaysPerMonth);
                 streamWriter.WriteLine(workType);
                 streamWriter.WriteLine(agreementType);
-                streamWriter.Write(freeDays);
+                streamWriter.WriteLine(driverHoursDay);
+
+                streamWriter.Close();
             }
 
             Console.WriteLine("Write sucessfull worker");

@@ -12,6 +12,7 @@ namespace Grafik
                  .SetName("Artur")
                  .SetSurname("Habrajski")
                  .SetWorkDaysPerMonth(18)
+                 .SetDriverHoursDay(5)
                  .SetWorkPlaceName("s0450")
                  .SetWorkType(WorkType.Hybrid)
                  .SetAgreementType(AgreementType.Permanent)
@@ -20,6 +21,7 @@ namespace Grafik
      .SetName("Artur43434")
      .SetSurname("Habrajski34343")
      .SetWorkDaysPerMonth(18)
+     .SetDriverHoursDay(5)
      .SetWorkPlaceName("s0450")
      .SetWorkType(WorkType.Hybrid)
      .SetAgreementType(AgreementType.Permanent)
@@ -28,6 +30,7 @@ namespace Grafik
      .SetName("Arddftur")
      .SetSurname("Habrajsfdfdsski")
      .SetWorkDaysPerMonth(18)
+     .SetDriverHoursDay(5)
      .SetWorkPlaceName("s0450")
      .SetWorkType(WorkType.Hybrid)
      .SetAgreementType(AgreementType.Permanent)
@@ -40,6 +43,10 @@ namespace Grafik
             WorkersManager _workersManager = new WorkersManager();
             _workersManager.LoadWorkersToList();
 
+            //_workersManager.DeleteWorker("Artur", "Habrajski");
+
+        //    worker.WorkDaysPerMonth = 30;
+        //    _workersManager.UpdateWorker(worker);
             foreach(var w in _workersManager.Workers)
             {
                // Console.WriteLine(w.Name);
@@ -51,14 +58,23 @@ namespace Grafik
             savePlace.CreateWorkPlace("s0450");
             savePlace.CreateWorkPlace("s0415");
 
-            List<string> directories = new List<string>();
+            WorkPlacesManager workPlacesManager = new WorkPlacesManager();
+            workPlacesManager.LoadWorkPlacesToList();
 
-            directories = savePlace.ReadWorkPlaces();
-
-            foreach(var a in directories)
+            foreach(var a in workPlacesManager.WorkPlaces)
             {
                 Console.WriteLine(a);
             }
+
+            MonthlyDays monthlyDays = new MonthlyDays();
+            new GenerateMonthlyDays().Generate(monthlyDays,2021, 10);
+            CalculatedMonthlyDays calculatedDays = new CalculatedMonthlyDays();
+            CalculateDuty calculate = new CalculateDuty();
+            calculate.CalculateDriverDay(monthlyDays, calculatedDays, _workersManager.Workers);
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine(calculatedDays.DriverCalculatedDay);
 
         }
 
@@ -70,6 +86,7 @@ namespace Grafik
             Console.WriteLine(worker.WorkType);
             Console.WriteLine(worker.AgreementType);
             Console.WriteLine(worker.WorkPlaceName);
+            Console.WriteLine(worker.DriverHoursDay);
         }
     }
 }

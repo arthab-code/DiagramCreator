@@ -12,6 +12,10 @@ namespace Grafik
         IWorkerBuilder SetSurname(string surname);
         IWorkerBuilder SetWorkPlaceName(string workPlaceName);
         IWorkerBuilder SetWorkDaysPerMonth(int workDaysPerMonth);
+        IWorkerBuilder SetDriverHoursDay(int workDaysPerMonth);
+        IWorkerBuilder SetDriverHoursNight(int workDaysPerMonth);
+        IWorkerBuilder SetExecutiveHoursDay(int workDaysPerMonth);
+        IWorkerBuilder SetExecutiveHoursNight(int workDaysPerMonth);
         IWorkerBuilder SetWorkType(WorkType workType);
         IWorkerBuilder SetAgreementType(AgreementType agreementType);
         Worker Build();

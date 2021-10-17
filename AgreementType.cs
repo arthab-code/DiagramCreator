@@ -8,7 +8,8 @@ namespace Grafik
 {
     public enum AgreementType
     {
-        Permanent,
-        Other
+        Permanent, //12h Duty
+        Duty, // 24h Duty
+        HalfDuty // 12h Duty
     }
 }

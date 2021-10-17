@@ -32,6 +32,28 @@ namespace Grafik
             return this;
         }
 
+        public IWorkerBuilder SetDriverHoursDay(int driverHoursDay)
+        {
+            _worker.DriverHoursDay = driverHoursDay;
+            return this;
+        }
+
+        public IWorkerBuilder SetDriverHoursNight(int driverHoursNight)
+        {
+            _worker.DriverHoursNight = driverHoursNight;
+            return this;
+        }
+        public IWorkerBuilder SetExecutiveHoursDay(int executiveHoursDay)
+        {
+            _worker.ExecutiveHoursDay = executiveHoursDay;
+            return this;
+        }
+        public IWorkerBuilder SetExecutiveHoursNight(int executiveHoursNight)
+        {
+            _worker.ExecutiveHoursNight = executiveHoursNight;
+            return this;
+        }
+
         public IWorkerBuilder SetWorkPlaceName(string workPlaceName)
         {
             _worker.WorkPlaceName = workPlaceName;

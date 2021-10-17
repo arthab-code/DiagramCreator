@@ -26,6 +26,9 @@ namespace Grafik
 
         public void LoadWorkersToList()
         {
+            /* Clear list */
+            _workers.Clear();
+
             DirectoryInfo directoryInfo = new DirectoryInfo(_paths._workersPath);
 
             var directories = directoryInfo.GetDirectories();
@@ -36,6 +39,18 @@ namespace Grafik
 
                 _workers.Add(_workersDatabase.ReadWorker(nameTemp[0], nameTemp[1]));
             }
+        }
+
+        public void DeleteWorker(string name, string surname)
+        {
+            _workersDatabase.DeleteWorker(name, surname);
+            LoadWorkersToList();
+        }
+
+        public void UpdateWorker(Worker worker)
+        {
+            _workersDatabase.UpdateWorker(worker);
+            LoadWorkersToList();
         }
     } 
 }

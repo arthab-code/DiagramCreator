@@ -13,7 +13,7 @@ namespace Grafik
         public int WorkDaysInMonth
         {
             get => _workDaysInMonth;
-            private set { }
+            set => _workDaysInMonth = value;
         }
 
         public int ExecutiveHoursDay
@@ -40,15 +40,5 @@ namespace Grafik
             set => _driverHoursNight = value; 
         }
 
-        public void CalculateWorkDays(int month, int year)
-        {
-            var calculatedDays = DateTime.DaysInMonth(year, month);
-
-            _workDaysInMonth = calculatedDays * 2;
-            _driverHoursDay = calculatedDays;
-            _executiveHoursDay = calculatedDays;
-            _driverHoursNight = calculatedDays;
-            _executiveHoursNight = calculatedDays;
-        }
     }
 }
