@@ -33,31 +33,27 @@ namespace Grafik
      .SetAgreementType(AgreementType.Permanent)
      .Build();
 
-            var saveSystem = new FileWorkerSave();
-            saveSystem.SetWorker(worker);
-            saveSystem.SaveWorkerToDatabase();
-            saveSystem.SetWorker(worker2);
-            saveSystem.SaveWorkerToDatabase();
-            saveSystem.SetWorker(worker3);
-            saveSystem.SaveWorkerToDatabase();
-            WorkersDatabase _workersDatabase = new WorkersDatabase();
-            _workersDatabase.LoadWorkersToList();
+            var saveSystem = new WorkersFileDatabase();
+            saveSystem.CreateWorker(worker);
+            saveSystem.CreateWorker(worker2);
+            saveSystem.CreateWorker(worker3);
+            WorkersManager _workersManager = new WorkersManager();
+            _workersManager.LoadWorkersToList();
 
-            foreach(var w in _workersDatabase.Workers)
+            foreach(var w in _workersManager.Workers)
             {
                // Console.WriteLine(w.Name);
                 ShowData(w);
                 Console.WriteLine();
             }
 
-            ISaveWorkPlace savePlace = new FileWorkPlaceSave();
-            savePlace.SaveWorkPlaceToDatabase("s0450");
-            savePlace.SaveWorkPlaceToDatabase("s0415");
-            ILoadWorkPlace loadWorkPlace = new LoadWorkPlaceFromFile();
+            IWorkPlacesDatabase savePlace = new WorkPlacesFileDatabase();
+            savePlace.CreateWorkPlace("s0450");
+            savePlace.CreateWorkPlace("s0415");
 
             List<string> directories = new List<string>();
 
-            directories = loadWorkPlace.LoadAllPlaces();
+            directories = savePlace.ReadWorkPlaces();
 
             foreach(var a in directories)
             {

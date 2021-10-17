@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AgreementType.cs" />
     <Compile Include="FileSystemSave.cs" />
     <Compile Include="ILoadWorker.cs" />
     <Compile Include="ISaveWorker.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="WorkDiagram.cs" />
     <Compile Include="Worker.cs" />
     <Compile Include="WorkerBuilder.cs" />
+    <Compile Include="WorkerName.cs" />
     <Compile Include="WorkersDatabase.cs" />
     <Compile Include="WorkPlace.cs" />
     <Compile Include="WorkType.cs" />
