@@ -8,7 +8,8 @@
         Title="AutoGrafik12" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -18,14 +19,51 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        
+        <TabControl Grid.RowSpan="3" Grid.ColumnSpan="3">
+            <TabItem Width="100" Header="Grafik">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
+                        
+                    </ScrollViewer>
+                    <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Width="80" Height="20" Margin="4">Wyświetl</Button>
+                    <Button Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Width="80" Height="20" Margin="4">Usuń</Button>
+                    <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2">
+                        Wybierz rok i miesiąc
+                    </TextBlock>
+                    <Calendar DisplayMode="Year" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
+                    <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" Height="50">GENERUJ GRAFIK</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Width="100" Header="Pracownicy">
 
-        <Button Background="DarkGreen" Grid.Row="0" Grid.Column="0">Pracownicy</Button>
-        <Button Grid.Row="0" Grid.Column="1">Miejsce dyżurowania</Button>
-        <Button Grid.Row="0" Grid.Column="2">Grafiki</Button>
-        <Button Grid.Row="0" Grid.Column="3">Pomoc</Button>
+            </TabItem>
+            <TabItem Width="100" Header="Miejsca dyżurowania">
 
-        <ScrollViewer Grid.Row="1" Grid.Column="0">dsdsd</ScrollViewer>
-        <TextBlock Background="LightGray" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"></TextBlock>
+            </TabItem>
+            <TabItem Width="100" Header="Pomoc">
+
+            </TabItem>
+        </TabControl>
+        
+        <Rectangle Grid.Column="3" Grid.RowSpan="3" Fill="PowderBlue"></Rectangle>
+ 
     </Grid>
 
 </Window>

@@ -56,18 +56,28 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AgreementType.cs" />
+    <Compile Include="CalculatedMonthlyDays.cs" />
+    <Compile Include="CalculateDuty.cs" />
     <Compile Include="FileSystemSave.cs" />
+    <Compile Include="GenerateMonthlyDays.cs" />
     <Compile Include="ILoadWorker.cs" />
     <Compile Include="ISaveWorker.cs" />
     <Compile Include="IWorkerBuilder.cs" />
+    <Compile Include="IWorkersDatabase.cs" />
+    <Compile Include="IWorkPlacesDatabase.cs" />
     <Compile Include="LoadWorkerFromFile.cs" />
     <Compile Include="MonthlyDays.cs" />
+    <Compile Include="Paths.cs" />
     <Compile Include="WorkDiagram.cs" />
     <Compile Include="Worker.cs" />
     <Compile Include="WorkerBuilder.cs" />
     <Compile Include="WorkerName.cs" />
     <Compile Include="WorkersDatabase.cs" />
+    <Compile Include="WorkersFileDatabase.cs" />
+    <Compile Include="WorkersManager.cs" />
     <Compile Include="WorkPlace.cs" />
+    <Compile Include="WorkPlacesFileDatabase.cs" />
+    <Compile Include="WorkPlacesManager.cs" />
     <Compile Include="WorkType.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

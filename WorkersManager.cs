@@ -35,7 +35,7 @@ namespace Grafik
 
             foreach (var directory in directories)
             {
-                var nameTemp = directory.Name.Split(" ");
+                var nameTemp = directory.Name.Split(' ');
 
                 _workers.Add(_workersDatabase.ReadWorker(nameTemp[0], nameTemp[1]));
             }

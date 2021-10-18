@@ -104,7 +104,7 @@ namespace Grafik
 
             foreach (var folderName in foldersNames)
             {
-                if (folderName.Name == (_workerName.GetFullName()))
+                if (folderName.Name == _workerName.GetFullName())
                 {
                     _validateData = false;
                     Console.WriteLine("Pracownik o takim imieniu i nazwisku istnieje. Jeśli faktycznie posiadasz pracownikow o takich samych imionach i nazwiskach - zajeb jednego z nich");
