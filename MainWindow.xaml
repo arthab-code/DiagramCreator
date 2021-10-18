@@ -44,7 +44,7 @@
                     <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Width="80" Height="20" Margin="4">Wyświetl</Button>
                     <Button Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Width="80" Height="20" Margin="4">Usuń</Button>
                     <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="2">
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4">
                         Wybierz rok i miesiąc
                     </TextBlock>
                     <Calendar DisplayMode="Year" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
@@ -52,17 +52,126 @@
                 </Grid>
             </TabItem>
             <TabItem Width="100" Header="Pracownicy">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
 
+                    </ScrollViewer>
+                    <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" Height="20" Margin="4">Dodaj pracownika</Button>
+                    <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
+                    <StackPanel Grid.Column="2" Grid.RowSpan="5"  Grid.ColumnSpan="4" Margin="10">
+                        <TextBlock FontSize="18" FontWeight="Bold">Imię : <TextBlock FontWeight="Normal">Artur</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Nazwisko : <TextBlock FontWeight="Normal">Habrajski</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">System pracy : <TextBlock FontWeight="Normal">24h</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Umowa : <TextBlock FontWeight="Normal">Kontrakt</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Stanowisko : <TextBlock FontWeight="Normal">Ratownik-Kierowca</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal">S0450</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Dzień: <TextBlock FontWeight="Normal">3</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Noc : <TextBlock FontWeight="Normal">4</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Dzień : <TextBlock FontWeight="Normal">5</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Noc : <TextBlock FontWeight="Normal">8</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dni wolne od pracy: <TextBlock FontWeight="Normal">1,6,7,8,9</TextBlock></TextBlock>
+                        <TextBlock></TextBlock>
+                        <UniformGrid>
+                            <Button Width="100" Height="25">Edytuj</Button>
+                            <Button Width="100" Height="25">Usuń</Button>
+                        </UniformGrid>
+                    </StackPanel>
+                    </Grid>
             </TabItem>
             <TabItem Width="100" Header="Miejsca dyżurowania">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
 
+                    </ScrollViewer>
+                    <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" Height="20" Margin="4">Dodaj miejsce</Button>
+                    <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.RowSpan="5"  Grid.ColumnSpan="4" Margin="10">
+                        <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal">S0450</TextBlock></TextBlock>
+
+                        <TextBlock></TextBlock>
+                        <UniformGrid>
+                            <Button Width="100" Height="25">Edytuj</Button>
+                            <Button Width="100" Height="25">Usuń</Button>
+                        </UniformGrid>
+                    </StackPanel>
+                </Grid>
             </TabItem>
             <TabItem Width="100" Header="Pomoc">
-
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="6" Fill="CadetBlue"></Rectangle>
+                    <StackPanel Grid.Column="0" Grid.RowSpan="5"  Grid.ColumnSpan="6" Margin="10">
+                        <TextBlock FontSize="20"> TUTAJ BEDZIE POMOC NA TEMAT DZIAŁANIA</TextBlock>
+                        <TextBlock FontSize="20"> I UŻYTKOWANIA APLIKACJI</TextBlock>
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
-        
+
         <Rectangle Grid.Column="3" Grid.RowSpan="3" Fill="PowderBlue"></Rectangle>
+        <StackPanel HorizontalAlignment="Center" Grid.Column="3" Grid.RowSpan="3">
+            <TextBlock></TextBlock>
+            <TextBlock></TextBlock>
+
+            <TextBlock FontWeight="Bold">LICZBA DYŻURÓW W MIESIĄCU</TextBlock>
+            <TextBlock FontSize="30" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock></TextBlock>
+            <TextBlock FontWeight="Bold">KIEROWCA DZIEŃ</TextBlock>
+            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock></TextBlock>
+            <TextBlock FontWeight="Bold">KIEROWCA NOC</TextBlock>
+            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock></TextBlock>
+            <TextBlock FontWeight="Bold">KIEROWNIK DZIEŃ</TextBlock>
+            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock></TextBlock>
+            <TextBlock FontWeight="Bold">KIEROWNIK NOC</TextBlock>
+            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+        </StackPanel>
  
     </Grid>
 
