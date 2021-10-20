@@ -41,6 +41,11 @@ namespace Grafik
             }
         }
 
+        public void Create(Worker worker)
+        {
+            _workersDatabase.CreateWorker(worker);
+        }
+
         public void DeleteWorker(string name, string surname)
         {
             _workersDatabase.DeleteWorker(name, surname);

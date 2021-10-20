@@ -19,7 +19,9 @@ namespace Grafik
         private int _executiveHoursNight;
         private WorkType _workType;
         private AgreementType _agreementType;
+        private WorkSystem _workSystem;
         private char[,] _workDiagram;
+        private string _freeDaysDisplay;
 
         public Worker()
         {
@@ -92,5 +94,16 @@ namespace Grafik
             get => _workDiagram; 
             set => _workDiagram = value; 
         }
+        public WorkSystem WorkSystem 
+        { 
+            get => _workSystem; 
+            set => _workSystem = value; 
+        }
+        public string FreeDaysDisplay 
+        { 
+            get => _freeDaysDisplay; 
+            set => _freeDaysDisplay = value; 
+        }
+
     }
 }

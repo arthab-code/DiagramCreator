@@ -69,22 +69,31 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
-
+                        <ListView SelectionMode="Single" x:Name="WorkersListDisplay">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Width="80" Header="Imię" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                                        <GridViewColumn Width="80"  Header="Nazwisko" DisplayMemberBinding="{Binding Path=Surname}"></GridViewColumn>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </ScrollViewer>
                     <Button x:Name="AddWorker" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" Height="20" Margin="4" Click="AddWorker_Click">Dodaj pracownika</Button>
                     <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
                     <StackPanel Grid.Column="2" Grid.RowSpan="5"  Grid.ColumnSpan="4" Margin="10">
-                        <TextBlock FontSize="18" FontWeight="Bold">Imię : <TextBlock FontWeight="Normal">Artur</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Nazwisko : <TextBlock FontWeight="Normal">Habrajski</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">System pracy : <TextBlock FontWeight="Normal">24h</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Umowa : <TextBlock FontWeight="Normal">Kontrakt</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Stanowisko : <TextBlock FontWeight="Normal">Ratownik-Kierowca</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal">S0450</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Dzień: <TextBlock FontWeight="Normal">3</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Noc : <TextBlock FontWeight="Normal">4</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Dzień : <TextBlock FontWeight="Normal">5</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Noc : <TextBlock FontWeight="Normal">8</TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dni wolne od pracy: <TextBlock FontWeight="Normal">1,6,7,8,9</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Imię : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.Name}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Nazwisko : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.Surname}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">System pracy : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkSystem}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Umowa : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.AgreementType}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Stanowisko : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkType}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkPlaceName}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Dzień: <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverHoursDay}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Noc : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverHoursNight}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Dzień : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.ExecutiveHoursDay}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Noc : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.ExecutiveHoursNight}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dni wolne od pracy: <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.FreeDaysDisplay}"></TextBlock></TextBlock>
                         <TextBlock></TextBlock>
                         <UniformGrid>
                             <Button Width="100" Height="25">Edytuj</Button>

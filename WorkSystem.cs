@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Grafik
 {
-    public enum AgreementType
+    public enum WorkSystem
     {
-        Permanent, 
-        Other
+        FullDuty,
+        HalfDuty
     }
 }

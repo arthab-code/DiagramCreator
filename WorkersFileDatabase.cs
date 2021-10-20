@@ -10,22 +10,9 @@ namespace Grafik
     public class WorkersFileDatabase : IWorkersDatabase
     {
         private Worker _worker;
-        private string _pathDirectories = "AppData/Workers";
-        private string _configFileName = "config.txt";
         private Paths _paths = new Paths();
         private bool _validateData = true;
         private WorkerName _workerName = new WorkerName();
-
-        public string PathDirectories 
-        { 
-            get => _pathDirectories; 
-            set => _pathDirectories = value; 
-        }
-        public string ConfigFileName
-        { 
-            get => _configFileName; 
-            set => _configFileName = value;
-        }
 
         public void CreateWorker(Worker worker)
         {
@@ -45,7 +32,6 @@ namespace Grafik
             if (Directory.Exists(_paths._workersPath+"\\"+ _workerName.GetFullName()))
             {
                 Directory.Delete(_paths._workersPath + "\\" + _workerName.GetFullName(), true);
-                Console.WriteLine("Pomyslnie wyjebales chuja");
                 return;
             }
             Console.WriteLine("NIE ISTNIEJE");
@@ -58,6 +44,7 @@ namespace Grafik
             _workerName.Surname = surname;
 
             var workerPath = _paths._workersPath + "/" + _workerName.GetFullName() + "/" + _paths._workerDataFile;
+            var freeTimePath = _paths._workersPath + "/" + _workerName.GetFullName() + "/" + _paths._workerFreeTime;
 
             Worker tempWorker = new Worker();
 
@@ -67,14 +54,30 @@ namespace Grafik
 
                 tempWorker.Name = streamReader.ReadLine();
                 tempWorker.Surname = streamReader.ReadLine();
-                tempWorker.WorkPlaceName = streamReader.ReadLine();
-                tempWorker.WorkDaysPerMonth = int.Parse(streamReader.ReadLine());
-                int workTypeTemp = int.Parse(streamReader.ReadLine());
-                tempWorker.WorkType = (WorkType)workTypeTemp;
                 int agreementTypeTemp = int.Parse(streamReader.ReadLine());
                 tempWorker.AgreementType = (AgreementType)agreementTypeTemp;
+                int workSystemTemp = int.Parse(streamReader.ReadLine());
+                tempWorker.WorkSystem = (WorkSystem)workSystemTemp;
+                int workTypeTemp = int.Parse(streamReader.ReadLine());
+                tempWorker.WorkType = (WorkType)workTypeTemp;
+                tempWorker.WorkPlaceName = streamReader.ReadLine();
                 tempWorker.DriverHoursDay = int.Parse(streamReader.ReadLine());
+                tempWorker.DriverHoursNight = int.Parse(streamReader.ReadLine());
+                tempWorker.ExecutiveHoursDay = int.Parse(streamReader.ReadLine());
+                tempWorker.ExecutiveHoursNight = int.Parse(streamReader.ReadLine());
 
+                /*
+                 *                 streamWriter.WriteLine(name);
+                streamWriter.WriteLine(surname);
+                streamWriter.WriteLine(agreementType);
+                streamWriter.WriteLine(workSystem);
+                streamWriter.WriteLine(workType);
+                streamWriter.WriteLine(workerPlaceName);          
+                streamWriter.WriteLine(driverHoursDay);
+                streamWriter.WriteLine(driverHoursNight);
+                streamWriter.WriteLine(executiveHoursDay);
+                streamWriter.WriteLine(executiveHoursNight);
+                 */
 
                 streamReader.Close();
             }
@@ -82,7 +85,14 @@ namespace Grafik
             {
                 Console.WriteLine(e.Message);
             }
-           
+
+            var read = File.ReadAllLines(freeTimePath);
+
+            foreach (var item in read)
+            {
+                tempWorker.FreeDaysDisplay += item + " ";
+            }
+
             return tempWorker;
         }
 
@@ -107,7 +117,6 @@ namespace Grafik
                 if (folderName.Name == (_workerName.GetFullName()))
                 {
                     _validateData = false;
-                    Console.WriteLine("Pracownik o takim imieniu i nazwisku istnieje. Jeśli faktycznie posiadasz pracownikow o takich samych imionach i nazwiskach - zajeb jednego z nich");
                     return;
                 }
             }
@@ -146,26 +155,42 @@ namespace Grafik
             var name = _worker.Name;
             var surname = _worker.Surname;
             var workerPlaceName = _worker.WorkPlaceName;
-            var workDaysPerMonth = _worker.WorkDaysPerMonth.ToString();
             int workTypeTemp = (int)_worker.WorkType;
             var workType = workTypeTemp.ToString();
             int agreementTypeTemp = (int)_worker.AgreementType;
             var agreementType = agreementTypeTemp.ToString();
+            int workSystemTemp = (int)_worker.WorkSystem;
+            var workSystem = workSystemTemp.ToString();
             var driverHoursDay = _worker.DriverHoursDay.ToString();
+            var driverHoursNight = _worker.DriverHoursNight.ToString();
+            var executiveHoursDay = _worker.ExecutiveHoursDay.ToString();
+            var executiveHoursNight = _worker.ExecutiveHoursNight.ToString();
 
             using (StreamWriter streamWriter = new StreamWriter(workerPath))
             {
                 streamWriter.WriteLine(name);
                 streamWriter.WriteLine(surname);
-                streamWriter.WriteLine(workerPlaceName);
-                streamWriter.WriteLine(workDaysPerMonth);
-                streamWriter.WriteLine(workType);
                 streamWriter.WriteLine(agreementType);
+                streamWriter.WriteLine(workSystem);
+                streamWriter.WriteLine(workType);
+                streamWriter.WriteLine(workerPlaceName);          
                 streamWriter.WriteLine(driverHoursDay);
+                streamWriter.WriteLine(driverHoursNight);
+                streamWriter.WriteLine(executiveHoursDay);
+                streamWriter.WriteLine(executiveHoursNight);
 
                 streamWriter.Close();
             }
 
+            var freeTimePath = _paths._workersPath + "/" + _workerName.GetFullName() + "/" + _paths._workerFreeTime;
+
+            using (StreamWriter streamWriter = new StreamWriter(freeTimePath))
+            {
+                foreach (var item in _worker.FreeDays)
+                    streamWriter.WriteLine(item.ToString());
+
+                streamWriter.Close();
+            }
             Console.WriteLine("Write sucessfull worker");
         }
     }

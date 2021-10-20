@@ -13,7 +13,7 @@ namespace Grafik
             if ((bool)value == true)
                 return Visibility.Visible;
             else
-                return Visibility.Hidden;
+                return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

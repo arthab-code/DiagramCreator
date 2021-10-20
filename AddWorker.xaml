@@ -23,20 +23,23 @@
                 <TextBlock>Nazwisko :</TextBlock>
                 <TextBox x:Name="AddSurname" Width="100"></TextBox>
             </UniformGrid>
-            <UniformGrid>
-                <TextBlock>Umowa :</TextBlock>
-                <StackPanel>
-                    <RadioButton x:Name="Permanent"  GroupName="AgreementType">Umowa o pracę</RadioButton>
+                <UniformGrid>
+                    <TextBlock>Umowa :</TextBlock>
+                    <StackPanel>
+                        <RadioButton x:Name="Permanent"  GroupName="AgreementType">Umowa o pracę</RadioButton>
                     <RadioButton x:Name="Other" GroupName="AgreementType">Kontrakt</RadioButton>
                 </StackPanel>
             </UniformGrid>
             <UniformGrid>
-                <TextBlock>System pracy :</TextBlock>
-                <StackPanel>
-                    <RadioButton GroupName="WorkSystem">24h</RadioButton>
-                    <RadioButton GroupName="WorkSystem">12h</RadioButton>
-                </StackPanel>
-            </UniformGrid>
+                    <UniformGrid.Visibility>
+                        <Binding ElementName="Other" Path="IsChecked" Converter="{StaticResource boolToVisibility}" />
+                    </UniformGrid.Visibility>
+                    <TextBlock>System pracy :</TextBlock>
+                    <StackPanel>
+                    <RadioButton x:Name="FullDuty" GroupName="WorkSystem">24h</RadioButton>
+                    <RadioButton x:Name="HalfDuty" GroupName="WorkSystem">12h</RadioButton>
+                    </StackPanel>
+                </UniformGrid>
             <UniformGrid>
                 <TextBlock>Funkcja :</TextBlock>
                 <StackPanel>
@@ -48,7 +51,7 @@
                 <UniformGrid>
                     <TextBlock>Miejsce dyżurowania :</TextBlock>
                     <ScrollViewer>
-                        <ListView Height="60">
+                        <ListView Height="60" x:Name="WorkPlaces">
 
                         </ListView>
                     </ScrollViewer>
@@ -65,7 +68,7 @@
                             </MultiBinding>
                         </UniformGrid.IsEnabled>
                         <TextBlock>Liczba dyżurów KIEROWCA DZIEŃ :</TextBlock>
-                        <TextBox x:Name="AddDriverDay" Width="100"></TextBox>
+                        <TextBox x:Name="AddDriverDay" Width="100">0</TextBox>
                     </UniformGrid>
                     <UniformGrid>
                         <UniformGrid.IsEnabled>
@@ -75,7 +78,7 @@
                             </MultiBinding>
                         </UniformGrid.IsEnabled>
                         <TextBlock>Liczba dyżurów KIEROWCA NOC :</TextBlock>
-                        <TextBox x:Name="AddDriverNight" Width="100"></TextBox>
+                        <TextBox x:Name="AddDriverNight" Width="100">0</TextBox>
                     </UniformGrid>
                     <UniformGrid>
                         <UniformGrid.IsEnabled>
@@ -85,7 +88,7 @@
                             </MultiBinding>
                         </UniformGrid.IsEnabled>
                         <TextBlock>Liczba dyżurów RATOWNIK DZIEŃ:</TextBlock>
-                        <TextBox x:Name="AddExecutiveDay" Width="100"></TextBox>
+                        <TextBox x:Name="AddExecutiveDay" Width="100">0</TextBox>
                     </UniformGrid>
                     <UniformGrid>
                         <UniformGrid.IsEnabled>
@@ -95,14 +98,14 @@
                             </MultiBinding>
                         </UniformGrid.IsEnabled>
                         <TextBlock>Liczba dyżurów RATOWNIK NOC :</TextBlock>
-                        <TextBox x:Name="AddExecutiveNight" Width="100"></TextBox>
+                        <TextBox x:Name="AddExecutiveNight" Width="100">0</TextBox>
                     </UniformGrid>
                 </StackPanel>
                 <UniformGrid>
                     <TextBlock>Dni wolne :</TextBlock>
                     <TextBox x:Name="FreeDays" Width="100"></TextBox>
                 </UniformGrid>
-                <Button Width="100" Height="25">Dodaj pracownika</Button>
+                <Button x:Name="ADD" Width="100" Height="25" Click="ADD_Click">Dodaj pracownika</Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

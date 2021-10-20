@@ -18,6 +18,8 @@ namespace Grafik
         IWorkerBuilder SetExecutiveHoursNight(int workDaysPerMonth);
         IWorkerBuilder SetWorkType(WorkType workType);
         IWorkerBuilder SetAgreementType(AgreementType agreementType);
+        IWorkerBuilder SetFreeDays(byte[] freeDays);
+        IWorkerBuilder SetWorkSystem(WorkSystem workSystem);
         Worker Build();
 
     }

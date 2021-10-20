@@ -11,5 +11,6 @@ namespace Grafik
         public string _workersPath = "AppData\\Workers";
         public string _workerPlacePath = "AppData\\WorkPlaces";
         public string _workerDataFile = "data.txt";
+        public string _workerFreeTime = "free_time.txt";
     }
 }

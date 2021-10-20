@@ -106,6 +106,7 @@
     <Compile Include="WorkPlace.cs" />
     <Compile Include="WorkPlacesFileDatabase.cs" />
     <Compile Include="WorkPlacesManager.cs" />
+    <Compile Include="WorkSystem.cs" />
     <Compile Include="WorkType.cs" />
     <Page Include="AddWorker.xaml">
       <SubType>Designer</SubType>
