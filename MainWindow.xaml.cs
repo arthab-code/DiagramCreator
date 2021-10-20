@@ -73,5 +73,10 @@ namespace Grafik
 
         }
 
+        private void AddWorker_Click(object sender, RoutedEventArgs e)
+        {
+            AddWorker addWorker = new AddWorker();
+            addWorker.ShowDialog();
+        }
     }
 }

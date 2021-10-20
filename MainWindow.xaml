@@ -71,7 +71,7 @@
                     <ScrollViewer Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
 
                     </ScrollViewer>
-                    <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" Height="20" Margin="4">Dodaj pracownika</Button>
+                    <Button x:Name="AddWorker" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" Height="20" Margin="4" Click="AddWorker_Click">Dodaj pracownika</Button>
                     <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
                     <StackPanel Grid.Column="2" Grid.RowSpan="5"  Grid.ColumnSpan="4" Margin="10">
                         <TextBlock FontSize="18" FontWeight="Bold">Imię : <TextBlock FontWeight="Normal">Artur</TextBlock></TextBlock>

@@ -83,7 +83,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddWorker.xaml.cs">
+      <DependentUpon>AddWorker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AgreementType.cs" />
+    <Compile Include="BooleanConverter.cs" />
+    <Compile Include="BoolToVisibilityConverter.cs" />
     <Compile Include="CalculatedMonthlyDays.cs" />
     <Compile Include="CalculateDuty.cs" />
     <Compile Include="GenerateMonthlyDays.cs" />
@@ -102,6 +107,10 @@
     <Compile Include="WorkPlacesFileDatabase.cs" />
     <Compile Include="WorkPlacesManager.cs" />
     <Compile Include="WorkType.cs" />
+    <Page Include="AddWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
