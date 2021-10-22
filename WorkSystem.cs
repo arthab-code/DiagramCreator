@@ -9,6 +9,7 @@ namespace Grafik
     public enum WorkSystem
     {
         FullDuty,
-        HalfDuty
+        HalfDuty,
+        NotSelected
     }
 }

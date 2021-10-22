@@ -30,12 +30,16 @@ namespace Grafik
 
         private void ADD_Click(object sender, RoutedEventArgs e)
         {
-            WorkSystem workSystem = WorkSystem.HalfDuty;
+            WorkSystem workSystem = WorkSystem.NotSelected;
             AgreementType agreementType = AgreementType.Permanent;
             WorkType workType = WorkType.Hybrid;
 
             if (Permanent.IsChecked == true)
+            {
                 agreementType = AgreementType.Permanent;
+                workSystem = WorkSystem.HalfDuty;
+            }
+
             if (Other.IsChecked == true)
                 agreementType = AgreementType.Other;
 
@@ -53,7 +57,7 @@ namespace Grafik
             if (Other.IsChecked == true)
                 workType = WorkType.Other;
 
-            if (WorkPlaces.SelectedItem == null || AddName.Text == "" || AddSurname.Text == "")
+            if (WorkPlaces.SelectedItem == null || AddName.Text == "" || AddSurname.Text == "" || workSystem == WorkSystem.NotSelected)
             {
                 MessageBox.Show("WYPEŁNIJ WSZYSTKIE DANE !");
                 this.Close();
@@ -139,10 +143,10 @@ namespace Grafik
                         .SetWorkSystem(workSystem)
                         .SetWorkType(workType)
                         .SetWorkPlaceName(WorkPlaces.SelectedItem.ToString())
-                        .SetDriverHoursDay(int.Parse(AddDriverDay.Text))
-                        .SetDriverHoursNight(int.Parse(AddDriverNight.Text))
-                        .SetExecutiveHoursDay(int.Parse(AddExecutiveDay.Text))
-                        .SetExecutiveHoursNight(int.Parse(AddExecutiveNight.Text))
+                        .SetDriverHoursDay(driverDay)
+                        .SetDriverHoursNight(driverNight)
+                        .SetExecutiveHoursDay(executiveDay)
+                        .SetExecutiveHoursNight(executiveNight)
                         .Build();
                 }
 
