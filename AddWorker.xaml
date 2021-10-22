@@ -14,19 +14,22 @@
         <Rectangle Fill="Azure"></Rectangle>
         <ScrollViewer>
         <StackPanel HorizontalAlignment="Left">
-            
-            <UniformGrid>
-                <TextBlock>Imię :</TextBlock>
+                <UniformGrid>
+                    <TextBlock>POLA OZNACZONE '*' SĄ OBOWIĄZKOWE !</TextBlock>
+                </UniformGrid>
+                <Label></Label>
+                <UniformGrid>
+                <TextBlock>Imię* :</TextBlock>
                 <TextBox x:Name="AddName" Width="100"></TextBox>
             </UniformGrid>
             <UniformGrid>
-                <TextBlock>Nazwisko :</TextBlock>
+                <TextBlock>Nazwisko* :</TextBlock>
                 <TextBox x:Name="AddSurname" Width="100"></TextBox>
             </UniformGrid>
                 <UniformGrid>
-                    <TextBlock>Umowa :</TextBlock>
+                    <TextBlock>Umowa* :</TextBlock>
                     <StackPanel>
-                        <RadioButton x:Name="Permanent"  GroupName="AgreementType">Umowa o pracę</RadioButton>
+                    <RadioButton x:Name="Permanent"  GroupName="AgreementType">Umowa o pracę</RadioButton>
                     <RadioButton x:Name="Other" GroupName="AgreementType">Kontrakt</RadioButton>
                 </StackPanel>
             </UniformGrid>
@@ -34,14 +37,14 @@
                     <UniformGrid.Visibility>
                         <Binding ElementName="Other" Path="IsChecked" Converter="{StaticResource boolToVisibility}" />
                     </UniformGrid.Visibility>
-                    <TextBlock>System pracy :</TextBlock>
+                    <TextBlock>System pracy* :</TextBlock>
                     <StackPanel>
                     <RadioButton x:Name="FullDuty" GroupName="WorkSystem">24h</RadioButton>
                     <RadioButton x:Name="HalfDuty" GroupName="WorkSystem">12h</RadioButton>
                     </StackPanel>
                 </UniformGrid>
             <UniformGrid>
-                <TextBlock>Funkcja :</TextBlock>
+                <TextBlock>Funkcja* :</TextBlock>
                 <StackPanel>
                     <RadioButton x:Name="Hybrid"  GroupName="WorkType">Kierowca-Ratownik</RadioButton>
                     <RadioButton x:Name="Paramedic" GroupName="WorkType">Ratownik</RadioButton>
@@ -49,7 +52,7 @@
                 </StackPanel>
             </UniformGrid>
                 <UniformGrid>
-                    <TextBlock>Miejsce dyżurowania :</TextBlock>
+                    <TextBlock>Miejsce dyżurowania* :</TextBlock>
                     <ScrollViewer>
                         <ListView Height="60" x:Name="WorkPlaces">
 
