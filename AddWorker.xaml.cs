@@ -54,8 +54,10 @@ namespace Grafik
                 workType = WorkType.Hybrid;
             if (Driver.IsChecked == true)
                 workType = WorkType.Driver;
-            if (Other.IsChecked == true)
+            /*
+            if (OtherType.IsChecked == true)
                 workType = WorkType.Other;
+            */
 
             if (WorkPlaces.SelectedItem == null || AddName.Text == "" || AddSurname.Text == "" || workSystem == WorkSystem.NotSelected)
             {
@@ -66,8 +68,6 @@ namespace Grafik
 
             Worker workerBuild = new Worker();
 
-            try
-            {
                 if (agreementType == AgreementType.Permanent && workType == WorkType.Hybrid)
                 {
 
@@ -109,7 +109,6 @@ namespace Grafik
                         .SetAgreementType(agreementType)
                         .SetWorkSystem(workSystem)
                         .SetWorkType(workType)
-                        .SetWorkPlaceName(WorkPlaces.SelectedItem.ToString())
                         .SetWorkPlaceName(WorkPlaces.SelectedItem.ToString())
                         .SetDriverHoursDay(7)
                         .SetDriverHoursNight(7)
@@ -156,13 +155,9 @@ namespace Grafik
                 {
                     WorkersManager workersManager = new WorkersManager();
                     workersManager.Create(workerBuild);
-                    MessageBox.Show("Dodano pracownika " + workerBuild.Name + " " + workerBuild.Surname);
+                    MessageBox.Show("Dodano pracownika " + workerBuild.Name + " " + workerBuild.Surname +" WORK TYPE : "+workerBuild.WorkType);
                 }
-            }
-            catch(Exception exception)
-            {
-                MessageBox.Show("WYPEŁNIJ WSZYSTKIE DANE !");
-            }
+
             this.Close();
         }
 

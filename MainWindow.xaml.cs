@@ -20,28 +20,36 @@ namespace Grafik
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Worker _selectedWorker;
+        private WorkersManager workerManager; 
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            WorkersManager workerManager = new WorkersManager();
-            workerManager.LoadWorkersToList();
-            WorkersListDisplay.ItemsSource = workerManager.Workers;
+            RefreshWorkersList();
         }
 
         private void AddWorker_Click(object sender, RoutedEventArgs e)
         {
             AddWorker addWorker = new AddWorker();
             addWorker.ShowDialog();
-            RefreshWindow();
+            RefreshWorkersList();
         }
 
-        private void RefreshWindow()
+        private void RefreshWorkersList()
         {
-            WorkersManager workerManager = new WorkersManager();
+            workerManager = new WorkersManager();
             workerManager.LoadWorkersToList();
             WorkersListDisplay.ItemsSource = workerManager.Workers;
+        }
+
+        private void DeleteWorker(object sender, RoutedEventArgs e)
+        {
+            var workerTemp = (Worker)WorkersListDisplay.SelectedItem;
+            workerManager.DeleteWorker(workerTemp.Name, workerTemp.Surname);
+
+            MessageBox.Show("Usunięto pracownika : " + workerTemp.Name + " " + workerTemp.Surname);
+            RefreshWorkersList();
         }
     }
 }

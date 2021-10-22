@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows;
 using System.Threading.Tasks;
 
 namespace Grafik
@@ -34,7 +35,7 @@ namespace Grafik
                 Directory.Delete(_paths._workersPath + "\\" + _workerName.GetFullName(), true);
                 return;
             }
-            Console.WriteLine("NIE ISTNIEJE");
+            MessageBox.Show("Nie istnieje taki pracownik " + name + " " + surname);
         }
 
         public Worker ReadWorker(string name, string surname)

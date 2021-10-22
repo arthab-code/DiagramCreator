@@ -97,7 +97,7 @@
                         <TextBlock></TextBlock>
                         <UniformGrid>
                             <Button Width="100" Height="25">Edytuj</Button>
-                            <Button Width="100" Height="25">Usuń</Button>
+                            <Button Width="100" Height="25" Click="DeleteWorker">Usuń</Button>
                         </UniformGrid>
                     </StackPanel>
                     </Grid>
