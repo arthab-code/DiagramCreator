@@ -20,6 +20,9 @@ namespace Grafik
     public partial class AddWorker : Window
     {
         private bool _checkedParseFreeDays = true;
+        private WorkSystem _workSystem;
+        private AgreementType _agreementType;
+        private WorkType _workType;
 
         public AddWorker()
         {
@@ -30,95 +33,42 @@ namespace Grafik
 
         private void ADD_Click(object sender, RoutedEventArgs e)
         {
-            WorkSystem workSystem = WorkSystem.NotSelected;
-            AgreementType agreementType = AgreementType.Permanent;
-            WorkType workType = WorkType.Hybrid;
-
-            if (Permanent.IsChecked == true)
+            InitializeRadioButtons();
+            
+            if (!CheckDataFilled())
             {
-                agreementType = AgreementType.Permanent;
-                workSystem = WorkSystem.HalfDuty;
-            }
-
-            if (Other.IsChecked == true)
-                agreementType = AgreementType.Other;
-
-            if (FullDuty.IsChecked == true)
-                workSystem = WorkSystem.FullDuty;
-            if (HalfDuty.IsChecked == true)
-                workSystem = WorkSystem.HalfDuty;
-
-            if (Paramedic.IsChecked == true)
-                workType = WorkType.Executive;
-            if (Hybrid.IsChecked == true)
-                workType = WorkType.Hybrid;
-            if (Driver.IsChecked == true)
-                workType = WorkType.Driver;
-            /*
-            if (OtherType.IsChecked == true)
-                workType = WorkType.Other;
-            */
-
-            if (WorkPlaces.SelectedItem == null || AddName.Text == "" || AddSurname.Text == "" || workSystem == WorkSystem.NotSelected)
-            {
-                MessageBox.Show("WYPEŁNIJ WSZYSTKIE DANE !");
                 this.Close();
                 return;
             }
 
-            Worker workerBuild = new Worker();
 
-                if (agreementType == AgreementType.Permanent && workType == WorkType.Hybrid)
+                if (_agreementType == AgreementType.Permanent && _workType == WorkType.Hybrid)
                 {
-
-                    workerBuild = new WorkerBuilder()
-                        .SetName(AddName.Text)
-                        .SetSurname(AddSurname.Text)
-                        .SetAgreementType(agreementType)
-                        .SetWorkSystem(workSystem)
-                        .SetWorkType(workType)
-                        .SetWorkPlaceName(WorkPlaces.SelectedItem.ToString())
-                        .SetDriverHoursDay(3)
-                        .SetDriverHoursNight(4)
-                        .SetExecutiveHoursDay(4)
-                        .SetExecutiveHoursNight(3)
-                        .Build();
+                   AddingWorker
+                   (AddName.Text, AddSurname.Text, _agreementType, _workSystem, _workType,
+                    WorkPlaces.SelectedItem.ToString(), 3, 4, 4, 3);
                 }
 
-                if (agreementType == AgreementType.Permanent && workType == WorkType.Executive)
+                if (_agreementType == AgreementType.Permanent && _workType == WorkType.Executive)
                 {
-                    workerBuild = new WorkerBuilder()
-                        .SetName(AddName.Text)
-                        .SetSurname(AddSurname.Text)
-                        .SetAgreementType(agreementType)
-                        .SetWorkSystem(workSystem)
-                        .SetWorkType(workType)
-                        .SetWorkPlaceName(WorkPlaces.SelectedItem.ToString())
-                        .SetDriverHoursDay(0)
-                        .SetDriverHoursNight(0)
-                        .SetExecutiveHoursDay(7)
-                        .SetExecutiveHoursNight(7)
-                        .Build();
+
+                   AddingWorker
+                   (AddName.Text, AddSurname.Text, _agreementType, _workSystem, _workType,
+                   WorkPlaces.SelectedItem.ToString(), 0, 0, 7, 7);
+
                 }
 
-                if (agreementType == AgreementType.Permanent && workType == WorkType.Driver)
+                if (_agreementType == AgreementType.Permanent && _workType == WorkType.Driver)
                 {
-                    workerBuild = new WorkerBuilder()
-                        .SetName(AddName.Text)
-                        .SetSurname(AddSurname.Text)
-                        .SetAgreementType(agreementType)
-                        .SetWorkSystem(workSystem)
-                        .SetWorkType(workType)
-                        .SetWorkPlaceName(WorkPlaces.SelectedItem.ToString())
-                        .SetDriverHoursDay(7)
-                        .SetDriverHoursNight(7)
-                        .SetExecutiveHoursDay(0)
-                        .SetExecutiveHoursNight(0)
-                        .Build();
+
+                    AddingWorker
+                    (AddName.Text, AddSurname.Text, _agreementType, _workSystem, _workType,
+                    WorkPlaces.SelectedItem.ToString(), 7, 7, 0, 0);
+
                 }
 
 
-                if (agreementType == AgreementType.Other)
+                if (_agreementType == AgreementType.Other)
                 {
                     int driverDay, driverNight, executiveDay, executiveNight;
                     try
@@ -135,28 +85,12 @@ namespace Grafik
                         return;
                     }
 
-                    workerBuild = new WorkerBuilder()
-                        .SetName(AddName.Text)
-                        .SetSurname(AddSurname.Text)
-                        .SetAgreementType(agreementType)
-                        .SetWorkSystem(workSystem)
-                        .SetWorkType(workType)
-                        .SetWorkPlaceName(WorkPlaces.SelectedItem.ToString())
-                        .SetDriverHoursDay(driverDay)
-                        .SetDriverHoursNight(driverNight)
-                        .SetExecutiveHoursDay(executiveDay)
-                        .SetExecutiveHoursNight(executiveNight)
-                        .Build();
+                AddingWorker
+                (AddName.Text, AddSurname.Text, _agreementType, _workSystem, _workType,
+                WorkPlaces.SelectedItem.ToString(), driverDay, driverNight, executiveDay, executiveNight);
+
                 }
 
-                ParseFreeDays(workerBuild);
-
-                if (_checkedParseFreeDays)
-                {
-                    WorkersManager workersManager = new WorkersManager();
-                    workersManager.Create(workerBuild);
-                    MessageBox.Show("Dodano pracownika " + workerBuild.Name + " " + workerBuild.Surname +" WORK TYPE : "+workerBuild.WorkType);
-                }
 
             this.Close();
         }
@@ -191,6 +125,77 @@ namespace Grafik
                 return;
             }
         }
+
+        private void InitializeRadioButtons()
+        {
+            _workSystem = WorkSystem.NotSelected;
+            _agreementType = AgreementType.Permanent;
+            _workType = WorkType.Hybrid;
+
+            if (Permanent.IsChecked == true)
+            {
+                _agreementType = AgreementType.Permanent;
+                _workSystem = WorkSystem.HalfDuty;
+            }
+
+            if (Other.IsChecked == true)
+                _agreementType = AgreementType.Other;
+
+            if (FullDuty.IsChecked == true)
+                _workSystem = WorkSystem.FullDuty;
+            if (HalfDuty.IsChecked == true)
+                _workSystem = WorkSystem.HalfDuty;
+
+            if (Paramedic.IsChecked == true)
+                _workType = WorkType.Executive;
+            if (Hybrid.IsChecked == true)
+                _workType = WorkType.Hybrid;
+            if (Driver.IsChecked == true)
+                _workType = WorkType.Driver;
+            /*
+            if (OtherType.IsChecked == true)
+                workType = WorkType.Other;
+            */
+        }
+
+        private bool CheckDataFilled()
+        {
+
+            if (WorkPlaces.SelectedItem == null || AddName.Text == "" || AddSurname.Text == "" || _workSystem == WorkSystem.NotSelected)
+            {
+                MessageBox.Show("WYPEŁNIJ WSZYSTKIE DANE !");
+                return false;
+            } else
+            {
+                return true;
+            }
+        }
+
+        private void AddingWorker(string name, string surname, AgreementType agreementType, WorkSystem workSystem, WorkType workType, string workPlace, int driverDay, int driverNight, int executiveDay, int executiveNight)
+        {
+            Worker workerBuild =  new WorkerBuilder()
+                   .SetName(name)
+                   .SetSurname(surname)
+                   .SetAgreementType(agreementType)
+                   .SetWorkSystem(workSystem)
+                   .SetWorkType(workType)
+                   .SetWorkPlaceName(workPlace)
+                   .SetDriverHoursDay(driverDay)
+                   .SetDriverHoursNight(driverNight)
+                   .SetExecutiveHoursDay(executiveDay)
+                   .SetExecutiveHoursNight(executiveNight)
+                   .Build();
+
+            ParseFreeDays(workerBuild);
+
+            if (_checkedParseFreeDays)
+            {
+                WorkersManager workersManager = new WorkersManager();
+                workersManager.Create(workerBuild);
+                MessageBox.Show("Dodano pracownika " + workerBuild.Name + " " + workerBuild.Surname + " WORK TYPE : " + workerBuild.WorkType);
+            }
+        }
+
 
         private void LoadWorkPlaces()
         {
