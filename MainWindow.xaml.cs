@@ -51,5 +51,12 @@ namespace Grafik
             MessageBox.Show("Usunięto pracownika : " + workerTemp.Name + " " + workerTemp.Surname);
             RefreshWorkersList();
         }
+
+        private void EditWorker(object sender, RoutedEventArgs e)
+        {
+            EditWorker editWorker = new EditWorker();
+            editWorker.SetWorkerData((Worker)WorkersListDisplay.SelectedItem);
+            editWorker.ShowDialog();
+        }
     }
 }

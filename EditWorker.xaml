@@ -1,0 +1,108 @@
+﻿<Window x:Class="Grafik.EditWorker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Grafik"
+        mc:Ignorable="d"
+        Title="Edycja danych pracownika" Height="450" Width="400">
+    <Window.Resources>
+        <local:BooleanConverter x:Key="boolConvert" />
+        <local:BoolToVisibilityConverter x:Key="boolToVisibility" />
+    </Window.Resources>
+    <Grid>
+        <Rectangle Fill="Azure"></Rectangle>
+        <ScrollViewer>
+            <StackPanel HorizontalAlignment="Left">
+                <UniformGrid>
+                    <TextBlock>Imię :</TextBlock>
+                    <TextBox  x:Name="NameDisplay"  IsEnabled="False"  Width="100"></TextBox>
+                </UniformGrid>
+                <UniformGrid>
+                    <TextBlock>Nazwisko :</TextBlock>
+                    <TextBox x:Name="SurnameDisplay" IsEnabled="False" Width="100"></TextBox>
+                </UniformGrid>
+                <UniformGrid>
+                    <TextBlock>Umowa :</TextBlock>
+                    <StackPanel>
+                        <RadioButton x:Name="Permanent"  GroupName="AgreementType">Umowa o pracę</RadioButton>
+                        <RadioButton x:Name="Other" GroupName="AgreementType">Kontrakt</RadioButton>
+                    </StackPanel>
+                </UniformGrid>
+                <UniformGrid>
+                    <UniformGrid.Visibility>
+                        <Binding ElementName="Other" Path="IsChecked" Converter="{StaticResource boolToVisibility}" />
+                    </UniformGrid.Visibility>
+                    <TextBlock>System pracy :</TextBlock>
+                    <StackPanel>
+                        <RadioButton x:Name="FullDuty" GroupName="WorkSystem">24h</RadioButton>
+                        <RadioButton x:Name="HalfDuty" GroupName="WorkSystem">12h</RadioButton>
+                    </StackPanel>
+                </UniformGrid>
+                <UniformGrid>
+                    <TextBlock>Funkcja :</TextBlock>
+                    <StackPanel>
+                        <RadioButton x:Name="Hybrid"  GroupName="WorkType">Kierowca-Ratownik</RadioButton>
+                        <RadioButton x:Name="Paramedic" GroupName="WorkType">Ratownik</RadioButton>
+                        <RadioButton x:Name="Driver" GroupName="WorkType">Kierowca</RadioButton>
+                    </StackPanel>
+                </UniformGrid>
+                <UniformGrid>
+                    <TextBlock>Miejsce dyżurowania :</TextBlock>
+                    <ScrollViewer>
+                        <ListView Height="60" x:Name="WorkPlaces">
+
+                        </ListView>
+                    </ScrollViewer>
+                </UniformGrid>
+                <StackPanel>
+                    <UniformGrid>
+                        <UniformGrid.IsEnabled>
+                            <MultiBinding Converter="{StaticResource boolConvert}">
+                                <Binding ElementName="Hybrid" Path="IsChecked"></Binding>
+                                <Binding ElementName="Driver" Path="IsChecked"></Binding>
+                            </MultiBinding>
+                        </UniformGrid.IsEnabled>
+                        <TextBlock>Liczba dyżurów KIEROWCA DZIEŃ :</TextBlock>
+                        <TextBox x:Name="AddDriverDay" Width="100">0</TextBox>
+                    </UniformGrid>
+                    <UniformGrid>
+                        <UniformGrid.IsEnabled>
+                            <MultiBinding Converter="{StaticResource boolConvert}">
+                                <Binding ElementName="Hybrid" Path="IsChecked"></Binding>
+                                <Binding ElementName="Driver" Path="IsChecked"></Binding>
+                            </MultiBinding>
+                        </UniformGrid.IsEnabled>
+                        <TextBlock>Liczba dyżurów KIEROWCA NOC :</TextBlock>
+                        <TextBox x:Name="AddDriverNight" Width="100">0</TextBox>
+                    </UniformGrid>
+                    <UniformGrid>
+                        <UniformGrid.IsEnabled>
+                            <MultiBinding Converter="{StaticResource boolConvert}">
+                                <Binding ElementName="Hybrid" Path="IsChecked"></Binding>
+                                <Binding ElementName="Paramedic" Path="IsChecked"></Binding>
+                            </MultiBinding>
+                        </UniformGrid.IsEnabled>
+                        <TextBlock>Liczba dyżurów RATOWNIK DZIEŃ:</TextBlock>
+                        <TextBox x:Name="AddExecutiveDay" Width="100">0</TextBox>
+                    </UniformGrid>
+                    <UniformGrid>
+                        <UniformGrid.IsEnabled>
+                            <MultiBinding Converter="{StaticResource boolConvert}">
+                                <Binding ElementName="Hybrid" Path="IsChecked"></Binding>
+                                <Binding ElementName="Paramedic" Path="IsChecked"></Binding>
+                            </MultiBinding>
+                        </UniformGrid.IsEnabled>
+                        <TextBlock>Liczba dyżurów RATOWNIK NOC :</TextBlock>
+                        <TextBox x:Name="AddExecutiveNight" Width="100">0</TextBox>
+                    </UniformGrid>
+                </StackPanel>
+                <UniformGrid>
+                    <TextBlock>Dni wolne :</TextBlock>
+                    <TextBox x:Name="FreeDays" Width="100"></TextBox>
+                </UniformGrid>
+                <Button x:Name="ADD" Width="100" Height="25">Zapisz dane</Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -96,7 +96,7 @@
                         <TextBlock FontSize="18" FontWeight="Bold">Dni wolne od pracy: <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.FreeDaysDisplay}"></TextBlock></TextBlock>
                         <TextBlock></TextBlock>
                         <UniformGrid>
-                            <Button Width="100" Height="25">Edytuj</Button>
+                            <Button Width="100" Height="25" Click="EditWorker">Edytuj</Button>
                             <Button Width="100" Height="25" Click="DeleteWorker">Usuń</Button>
                         </UniformGrid>
                     </StackPanel>
