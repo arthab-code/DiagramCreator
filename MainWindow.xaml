@@ -119,18 +119,20 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
+                    <ScrollViewer  Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
+                        <ListView x:Name="WorkPlaces">
 
+                        </ListView>
                     </ScrollViewer>
-                    <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" Height="20" Margin="4">Dodaj miejsce</Button>
+                    <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="100" Height="20" Margin="4" Click="AddWorkPlace">Dodaj miejsce</Button>
                     <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.RowSpan="5"  Grid.ColumnSpan="4" Margin="10">
-                        <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal">S0450</TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkPlaces, Path=SelectedItem}"></TextBlock></TextBlock>
 
                         <TextBlock></TextBlock>
                         <UniformGrid>
-                            <Button Width="100" Height="25">Edytuj</Button>
-                            <Button Width="100" Height="25">Usuń</Button>
+                            <Button Width="100" Height="25" Click="EditWorkPlace">Edytuj</Button>
+                            <Button Width="100" Height="25" Click="DeletePlace">Usuń</Button>
                         </UniformGrid>
                     </StackPanel>
                 </Grid>

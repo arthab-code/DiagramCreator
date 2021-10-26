@@ -95,7 +95,7 @@ namespace Grafik
             this.Close();
         }
 
-        private void ParseFreeDays(Worker worker)
+      /*  private void ParseFreeDays(Worker worker)
         {
             var freeDaysString = FreeDays.Text;
 
@@ -124,7 +124,7 @@ namespace Grafik
                 _checkedParseFreeDays = false;
                 return;
             }
-        }
+        } */
 
         private void InitializeRadioButtons()
         {
@@ -186,9 +186,7 @@ namespace Grafik
                    .SetExecutiveHoursNight(executiveNight)
                    .Build();
 
-            ParseFreeDays(workerBuild);
-
-            if (_checkedParseFreeDays)
+            if (FreeDaysParser.ParseFreeDays(workerBuild.FreeDays, FreeDays.Text))
             {
                 WorkersManager workersManager = new WorkersManager();
                 workersManager.Create(workerBuild);

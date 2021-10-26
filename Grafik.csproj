@@ -86,6 +86,9 @@
     <Compile Include="AddWorker.xaml.cs">
       <DependentUpon>AddWorker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddWorkPlace.xaml.cs">
+      <DependentUpon>AddWorkPlace.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AgreementType.cs" />
     <Compile Include="BooleanConverter.cs" />
     <Compile Include="BoolToVisibilityConverter.cs" />
@@ -94,6 +97,10 @@
     <Compile Include="EditWorker.xaml.cs">
       <DependentUpon>EditWorker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditWorkPlace.xaml.cs">
+      <DependentUpon>EditWorkPlace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FreeDaysParser.cs" />
     <Compile Include="GenerateMonthlyDays.cs" />
     <Compile Include="IWorkerBuilder.cs" />
     <Compile Include="IWorkersDatabase.cs" />
@@ -115,7 +122,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddWorkPlace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditWorker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditWorkPlace.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

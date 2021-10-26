@@ -27,6 +27,7 @@ namespace Grafik
             InitializeComponent();
 
             RefreshWorkersList();
+            RefreshWorkPlaces();
         }
 
         private void AddWorker_Click(object sender, RoutedEventArgs e)
@@ -57,6 +58,60 @@ namespace Grafik
             EditWorker editWorker = new EditWorker();
             editWorker.SetWorkerData((Worker)WorkersListDisplay.SelectedItem);
             editWorker.ShowDialog();
+            RefreshWorkersList();
+        }
+
+        private void RefreshWorkPlaces()
+        {
+            WorkPlacesManager workPlacesManager = new WorkPlacesManager();
+
+            workPlacesManager.LoadWorkPlacesToList();
+
+            WorkPlaces.ItemsSource = workPlacesManager.WorkPlaces;
+        }
+
+        private void AddWorkPlace(object sender, RoutedEventArgs e)
+        {
+            AddWorkPlace addWorkPlace = new AddWorkPlace();
+            addWorkPlace.ShowDialog();
+            RefreshWorkPlaces();
+        }
+
+        private void EditWorkPlace(object sender, RoutedEventArgs e)
+        {
+            EditWorkPlace editWorkPlace = new EditWorkPlace();
+            editWorkPlace.SetWorkPlaceData((string)WorkPlaces.SelectedItem);
+            editWorkPlace.ShowDialog();
+            editWorkPlace.ChangeWorkerData(workerManager.Workers);
+            RefreshWorkersList();
+            RefreshWorkPlaces();
+
+            /* TUTAJ WYMAGANA FUNKCJA EDYCJI WSZYSTKICH PRACOWNIKOW NA NOWE MIEJSCE PRACY !! */
+        }
+
+        private void DeletePlace(object sender, RoutedEventArgs e)
+        {
+            WorkPlacesManager workPlacesManager = new WorkPlacesManager();
+            var workPlaceTemp = (string)WorkPlaces.SelectedItem;
+            workPlacesManager.DeleteWorkPlace(workPlaceTemp);
+            MessageBox.Show("Usunięto miejsce pracy : " + workPlaceTemp);
+            ChangeWorkerDataWhenDeleteWorkPlace(workerManager.Workers, workPlaceTemp);
+            RefreshWorkersList();
+            RefreshWorkPlaces();
+        }
+
+        public void ChangeWorkerDataWhenDeleteWorkPlace(List<Worker> workerList, string workPlaceNameOld)
+        {
+            WorkersManager workerManager = new WorkersManager();
+
+            foreach (var item in workerList)
+            {
+                if (item.WorkPlaceName == workPlaceNameOld)
+                {
+                    item.WorkPlaceName = "Usunięto UWAGA!";
+                    workerManager.UpdateWorker(item);
+                }
+            }
         }
     }
 }

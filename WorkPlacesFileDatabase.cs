@@ -45,9 +45,10 @@ namespace Grafik
             return directories;
         }
 
-        public void UpdateWorkPlace(string name)
+        public void UpdateWorkPlace(string oldName, string newName)
         {
-            throw new NotImplementedException();
+            DeleteWorkPlace(oldName);
+            CreateWorkPlace(newName);
         }
     }
 }

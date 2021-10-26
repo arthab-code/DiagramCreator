@@ -12,7 +12,7 @@
     </Window.Resources>
     <Grid>
         <Rectangle Fill="Azure"></Rectangle>
-        <ScrollViewer>
+        <ScrollViewer HorizontalAlignment="Left" Margin="0,0,-0.4,0" Width="394">
             <StackPanel HorizontalAlignment="Left">
                 <UniformGrid>
                     <TextBlock>Imię :</TextBlock>
@@ -101,7 +101,7 @@
                     <TextBlock>Dni wolne :</TextBlock>
                     <TextBox x:Name="FreeDays" Width="100"></TextBox>
                 </UniformGrid>
-                <Button x:Name="ADD" Width="100" Height="25">Zapisz dane</Button>
+                <Button x:Name="ADD" Width="100" Height="25" Click="SaveEdit">Zapisz dane</Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

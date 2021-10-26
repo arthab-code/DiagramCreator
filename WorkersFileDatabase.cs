@@ -89,9 +89,14 @@ namespace Grafik
 
             var read = File.ReadAllLines(freeTimePath);
 
-            foreach (var item in read)
+            for (int i=0; i < read.Length; i++)
             {
-                tempWorker.FreeDaysDisplay += item + " ";
+                if (i == read.Length-1)
+                {
+                    tempWorker.FreeDaysDisplay += read[i];
+                    break;
+                }
+                tempWorker.FreeDaysDisplay += read[i] + ",";
             }
 
             return tempWorker;

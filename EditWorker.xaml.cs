@@ -26,6 +26,10 @@ namespace Grafik
             InitializeComponent();
         }
 
+        private void SaveEdit(object sender, RoutedEventArgs e)
+        {
+            WorkerEditing();
+        }
         public void SetWorkerData(Worker worker)
         {
             _worker = worker;
@@ -83,36 +87,69 @@ namespace Grafik
             AddDriverNight.Text = _worker.DriverHoursNight.ToString();
             AddExecutiveDay.Text = _worker.ExecutiveHoursDay.ToString();
             AddExecutiveNight.Text = _worker.ExecutiveHoursNight.ToString();
-
-            ParseFreeDaysDataDisplay();
-           
+            FreeDays.Text = _worker.FreeDaysDisplay;
         }
 
-        private void ParseFreeDaysDataDisplay()
+        private void WorkerEditing()
         {
-            if (_worker.FreeDaysDisplay == null)
-                return;
-
-            if (_worker.FreeDaysDisplay.Length > 1)
+            int driverDay, driverNight, executiveDay, executiveNight;
+            try
             {
-                var parseFreeDaysDisplay = _worker.FreeDaysDisplay.Split(' ');
-                _worker.FreeDaysDisplay = "";
-                for (int i = 0; i < parseFreeDaysDisplay.Length; i++)
-                {
-                    if (i == parseFreeDaysDisplay.Length - 2)
-                    {
-                        _worker.FreeDaysDisplay += parseFreeDaysDisplay[i];
-                        break;
-                    }
-
-                    _worker.FreeDaysDisplay += parseFreeDaysDisplay[i] + ",";
-                }
-
-                FreeDays.Text = _worker.FreeDaysDisplay;
+                driverDay = int.Parse(AddDriverDay.Text);
+                driverNight = int.Parse(AddDriverNight.Text);
+                executiveDay = int.Parse(AddExecutiveDay.Text);
+                executiveNight = int.Parse(AddExecutiveNight.Text);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message + "\n" + "Dane w polach określających liczbę dyżurów powinny mieć wartość liczbową!");
+                this.Close();
+                return;
             }
 
-            if (_worker.FreeDaysDisplay.Length == 1)
-                FreeDays.Text = _worker.FreeDaysDisplay;
+            if (FreeDaysParser.ParseFreeDays(_worker.FreeDays, FreeDays.Text))
+            {
+                InitializeRadioButtons();
+                _worker.DriverHoursDay = driverDay;
+                _worker.DriverHoursNight = driverNight;
+                _worker.ExecutiveHoursDay = executiveDay;
+                _worker.ExecutiveHoursNight = executiveNight;
+                _worker.WorkPlaceName = WorkPlaces.SelectedValue.ToString();
+
+                WorkersManager workersManager = new WorkersManager();
+                workersManager.UpdateWorker(_worker);
+
+                MessageBox.Show("Poprawnie przeprowadzono edycję pracownika : " + _worker.Name + " " + _worker.Surname);
+                this.Close();
+            }
+        }
+
+        private void InitializeRadioButtons()
+        {
+            if (Permanent.IsChecked == true)
+            {
+                _worker.AgreementType = AgreementType.Permanent;
+                _worker.WorkSystem = WorkSystem.HalfDuty;
+            }
+
+            if (Other.IsChecked == true)
+                _worker.AgreementType = AgreementType.Other;
+
+            if (FullDuty.IsChecked == true)
+                _worker.WorkSystem = WorkSystem.FullDuty;
+            if (HalfDuty.IsChecked == true)
+                _worker.WorkSystem = WorkSystem.HalfDuty;
+
+            if (Paramedic.IsChecked == true)
+                _worker.WorkType = WorkType.Executive;
+            if (Hybrid.IsChecked == true)
+                _worker.WorkType = WorkType.Hybrid;
+            if (Driver.IsChecked == true)
+                _worker.WorkType = WorkType.Driver;
+            /*
+            if (OtherType.IsChecked == true)
+                workType = WorkType.Other;
+            */
         }
 
     }

@@ -10,7 +10,7 @@ namespace Grafik
     {
         void CreateWorkPlace(string name);
         List<string> ReadWorkPlaces();
-        void UpdateWorkPlace(string name);
+        void UpdateWorkPlace(string oldName, string newName);
         void DeleteWorkPlace(string name);
     }
 }

@@ -37,5 +37,17 @@ namespace Grafik
 
             LoadWorkPlacesToList();
         }
+
+        public void CreatePlace(string name)
+        {
+            _workFilesDatabase.CreateWorkPlace(name);
+            LoadWorkPlacesToList();
+        }
+
+        public void UpdatePlace(string oldName, string newName)
+        {
+            _workFilesDatabase.UpdateWorkPlace(oldName, newName);
+            LoadWorkPlacesToList();
+        }
     }
 }
