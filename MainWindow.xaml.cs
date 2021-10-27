@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Grafik
 {
@@ -20,11 +21,21 @@ namespace Grafik
     /// </summary>
     public partial class MainWindow : Window
     {
-        private WorkersManager workerManager; 
+        private WorkersManager workerManager;
+        private Paths _paths = new Paths();
         
         public MainWindow()
         {
             InitializeComponent();
+
+            if (CheckWorkPlaces())
+            {
+                ConfigWindow configWindow = new ConfigWindow();
+                configWindow.ShowDialog();
+
+                if (CheckWorkPlaces())
+                    this.Close();
+            }
 
             RefreshWorkersList();
             RefreshWorkPlaces();
@@ -46,6 +57,9 @@ namespace Grafik
 
         private void DeleteWorker(object sender, RoutedEventArgs e)
         {
+            if (WorkersListDisplay.SelectedItem == null)
+                return;
+
             var workerTemp = (Worker)WorkersListDisplay.SelectedItem;
             workerManager.DeleteWorker(workerTemp.Name, workerTemp.Surname);
 
@@ -55,6 +69,9 @@ namespace Grafik
 
         private void EditWorker(object sender, RoutedEventArgs e)
         {
+            if (WorkersListDisplay.SelectedItem == null)
+                return;
+
             EditWorker editWorker = new EditWorker();
             editWorker.SetWorkerData((Worker)WorkersListDisplay.SelectedItem);
             editWorker.ShowDialog();
@@ -79,6 +96,8 @@ namespace Grafik
 
         private void EditWorkPlace(object sender, RoutedEventArgs e)
         {
+            if (WorkPlaces.SelectedItem == null)
+                return;
             EditWorkPlace editWorkPlace = new EditWorkPlace();
             editWorkPlace.SetWorkPlaceData((string)WorkPlaces.SelectedItem);
             editWorkPlace.ShowDialog();
@@ -91,6 +110,8 @@ namespace Grafik
 
         private void DeletePlace(object sender, RoutedEventArgs e)
         {
+            if (WorkPlaces.SelectedItem == null)
+                return;
             WorkPlacesManager workPlacesManager = new WorkPlacesManager();
             var workPlaceTemp = (string)WorkPlaces.SelectedItem;
             workPlacesManager.DeleteWorkPlace(workPlaceTemp);
@@ -112,6 +133,18 @@ namespace Grafik
                     workerManager.UpdateWorker(item);
                 }
             }
+        }
+
+        private bool CheckWorkPlaces()
+        {
+            var directories = Directory.GetDirectories(_paths._workerPlacePath);
+
+            if (directories.Length == 0)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

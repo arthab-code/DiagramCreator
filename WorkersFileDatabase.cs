@@ -81,6 +81,24 @@ namespace Grafik
                  */
 
                 streamReader.Close();
+
+              /*  streamReader = new StreamReader(freeTimePath);
+
+                var countData = File.ReadAllLines(freeTimePath);
+
+                for(int i = 0; i < countData.Length; i++)
+                {
+                    tempWorker.FreeDays.Add(byte.Parse(streamReader.ReadLine()));
+                    
+                    if (i == countData.Length)
+                    {
+                        tempWorker.FreeDaysDisplay += streamReader.ReadLine().ToString();
+                        break;
+                    }
+                    tempWorker.FreeDaysDisplay += streamReader.ReadLine().ToString() + ",";
+                }
+
+                streamReader.Close(); */
             }
             catch (Exception e)
             {
