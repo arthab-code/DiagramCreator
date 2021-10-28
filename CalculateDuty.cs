@@ -8,46 +8,59 @@ namespace Grafik
 {
     public class CalculateDuty
     {
-        public void CalculateDriverDay(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers)
+        public void CalculateDriverDay(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers, string workPlace)
         {
-            int hours = 0;
+            int duty = 0;
             foreach (var worker in workers)
             {
-                hours += worker.DriverHoursDay;
+                if (worker.WorkPlaceName == workPlace)
+                    duty += worker.DriverHoursDay;
             }
-            Console.WriteLine(hours);
-            calculatedMonthlyDays.DriverCalculatedDay = monthlyDays.DriverHoursDay - hours;
+            Console.WriteLine(duty);
+            calculatedMonthlyDays.DriverCalculatedDay = monthlyDays.DriverHoursDay - duty;
         }
 
-        public void CalculateDriverNight(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers)
+        public void CalculateDriverNight(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers, string workPlace)
         {
-            int hours = 0;
+            int duty = 0;
             foreach (var worker in workers)
             {
-                hours += worker.DriverHoursNight;
+                if (worker.WorkPlaceName == workPlace)
+                    duty += worker.DriverHoursNight;
             }
-            calculatedMonthlyDays.DriverCalculatedNight = monthlyDays.DriverHoursNight - hours;
+            calculatedMonthlyDays.DriverCalculatedNight = monthlyDays.DriverHoursNight - duty;
 
         }
 
-        public void CalculateExecutiveDay(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers)
+        public void CalculateExecutiveDay(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers, string workPlace)
         {
-            int hours = 0;
+            int duty = 0;
             foreach (var worker in workers)
             {
-                hours += worker.ExecutiveHoursDay;
+                if (worker.WorkPlaceName == workPlace)
+                    duty += worker.ExecutiveHoursDay;
             }
-            calculatedMonthlyDays.ExecutiveCalculatedDay = monthlyDays.ExecutiveHoursDay - hours;
+            calculatedMonthlyDays.ExecutiveCalculatedDay = monthlyDays.ExecutiveHoursDay - duty;
         }
 
-        public void CalculateExecutiveNight(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers)
+        public void CalculateExecutiveNight(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays, List<Worker> workers, string workPlace)
         {
-            int hours = 0;
+            int duty = 0;
             foreach (var worker in workers)
             {
-                hours += worker.ExecutiveHoursNight;
+                if (worker.WorkPlaceName == workPlace)
+                    duty += worker.ExecutiveHoursNight;
             }
-            calculatedMonthlyDays.ExecutiveCalculatedNight = monthlyDays.ExecutiveHoursNight - hours;
+            calculatedMonthlyDays.ExecutiveCalculatedNight = monthlyDays.ExecutiveHoursNight - duty;
+        }
+
+        public void CalculateMonthlyDays(MonthlyDays monthlyDays, CalculatedMonthlyDays calculatedMonthlyDays)
+        {
+            calculatedMonthlyDays.MonthlyCalculated = 
+                + calculatedMonthlyDays.DriverCalculatedDay 
+                + calculatedMonthlyDays.DriverCalculatedNight 
+                + calculatedMonthlyDays.ExecutiveCalculatedDay 
+                + calculatedMonthlyDays.ExecutiveCalculatedNight;
         }
     }
 }

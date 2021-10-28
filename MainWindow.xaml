@@ -47,7 +47,7 @@
                     <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4">
                         Wybierz rok i miesiąc
                     </TextBlock>
-                    <Calendar DisplayMode="Year" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
+                    <Calendar x:Name="CalendarWPF" SelectedDatesChanged="SelectedDateChanges" DisplayMode="Year" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
                     <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" Height="50">GENERUJ GRAFIK</Button>
                 </Grid>
             </TabItem>
@@ -120,7 +120,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <ScrollViewer  Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
-                        <ListView x:Name="WorkPlaces">
+                        <ListView x:Name="WorkPlaces" SelectionChanged="WorkPlacesSelectionChange" SelectedIndex="0">
 
                         </ListView>
                     </ScrollViewer>
@@ -167,21 +167,22 @@
         <StackPanel HorizontalAlignment="Center" Grid.Column="3" Grid.RowSpan="3">
             <TextBlock></TextBlock>
             <TextBlock></TextBlock>
-
+            <TextBlock FontWeight="Bold">Wybrane miejsce dyżurów:</TextBlock>
+            <TextBlock x:Name="SelectedWorkPlace" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding ElementName=WorkPlaces, Path=SelectedItem}"></TextBlock>
             <TextBlock FontWeight="Bold">LICZBA DYŻURÓW W MIESIĄCU</TextBlock>
-            <TextBlock FontSize="30" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock x:Name="GeneralDays" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
             <TextBlock></TextBlock>
             <TextBlock FontWeight="Bold">KIEROWCA DZIEŃ</TextBlock>
-            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock x:Name="DriverDay" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
             <TextBlock></TextBlock>
             <TextBlock FontWeight="Bold">KIEROWCA NOC</TextBlock>
-            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock x:Name="DriverNight" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
             <TextBlock></TextBlock>
             <TextBlock FontWeight="Bold">KIEROWNIK DZIEŃ</TextBlock>
-            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock x:Name="ExecutiveDay" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
             <TextBlock></TextBlock>
             <TextBlock FontWeight="Bold">KIEROWNIK NOC</TextBlock>
-            <TextBlock FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
+            <TextBlock x:Name="ExecutiveNight" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
         </StackPanel>
  
     </Grid>

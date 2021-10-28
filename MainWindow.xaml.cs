@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 using System.IO;
 
 namespace Grafik
@@ -23,7 +24,11 @@ namespace Grafik
     {
         private WorkersManager workerManager;
         private Paths _paths = new Paths();
-        
+        private GenerateMonthlyDays _generateMonthlyDays;
+        private CalculatedMonthlyDays _calculatedMonthlyDays;
+        private CalculateDuty _calculateDuty;
+        private MonthlyDays _monthlyDays;
+        private DutyDisplayer _dutyDisplayer;
         public MainWindow()
         {
             InitializeComponent();
@@ -37,8 +42,24 @@ namespace Grafik
                     this.Close();
             }
 
+            _generateMonthlyDays = new GenerateMonthlyDays();
+            _calculatedMonthlyDays = new CalculatedMonthlyDays();
+            _calculateDuty = new CalculateDuty();
+            _monthlyDays = new MonthlyDays();
+            _dutyDisplayer = new DutyDisplayer();
+
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+
+            _generateMonthlyDays.Generate(_monthlyDays, year, month);
+
             RefreshWorkersList();
             RefreshWorkPlaces();
+
+            CalculateDuty();
+
+            _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
+
         }
 
         private void AddWorker_Click(object sender, RoutedEventArgs e)
@@ -46,6 +67,9 @@ namespace Grafik
             AddWorker addWorker = new AddWorker();
             addWorker.ShowDialog();
             RefreshWorkersList();
+            CalculateDuty();
+
+            _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
         }
 
         private void RefreshWorkersList()
@@ -65,6 +89,9 @@ namespace Grafik
 
             MessageBox.Show("Usunięto pracownika : " + workerTemp.Name + " " + workerTemp.Surname);
             RefreshWorkersList();
+            CalculateDuty();
+
+            _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
         }
 
         private void EditWorker(object sender, RoutedEventArgs e)
@@ -76,6 +103,10 @@ namespace Grafik
             editWorker.SetWorkerData((Worker)WorkersListDisplay.SelectedItem);
             editWorker.ShowDialog();
             RefreshWorkersList();
+
+            CalculateDuty();
+
+            _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
         }
 
         private void RefreshWorkPlaces()
@@ -145,6 +176,41 @@ namespace Grafik
             }
 
             return false;
+        }
+
+        private void SelectedDateChanges(object sender, SelectionChangedEventArgs e)
+        {
+            Calendar calendar = (Calendar)sender;
+
+            int year = calendar.SelectedDate.Value.Year;
+            int month = calendar.SelectedDate.Value.Month;
+
+            _generateMonthlyDays.Generate(_monthlyDays, year, month);
+
+            CalculateDuty();
+
+            _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
+
+            MessageBox.Show("Zmianieniono datę grafiku na : "+year.ToString()+" "+month.ToString());
+        }
+
+        private void CalculateDuty()
+        {
+            _calculateDuty.CalculateDriverDay(_monthlyDays, _calculatedMonthlyDays, workerManager.Workers, WorkPlaces.SelectedItem.ToString());
+            _calculateDuty.CalculateDriverNight(_monthlyDays, _calculatedMonthlyDays, workerManager.Workers, WorkPlaces.SelectedItem.ToString());
+            _calculateDuty.CalculateExecutiveDay(_monthlyDays, _calculatedMonthlyDays, workerManager.Workers, WorkPlaces.SelectedItem.ToString());
+            _calculateDuty.CalculateExecutiveNight(_monthlyDays, _calculatedMonthlyDays, workerManager.Workers, WorkPlaces.SelectedItem.ToString());
+            _calculateDuty.CalculateMonthlyDays(_monthlyDays, _calculatedMonthlyDays);
+        }
+
+        private void WorkPlacesSelectionChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (WorkPlaces.SelectedItem == null)
+                return;
+
+            CalculateDuty();
+
+            _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
         }
     }
 }

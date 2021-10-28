@@ -97,6 +97,7 @@
     <Compile Include="ConfigWindow.xaml.cs">
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DutyDisplayer.cs" />
     <Compile Include="EditWorker.xaml.cs">
       <DependentUpon>EditWorker.xaml</DependentUpon>
     </Compile>
