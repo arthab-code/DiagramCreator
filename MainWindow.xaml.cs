@@ -41,7 +41,6 @@ namespace Grafik
                 if (CheckWorkPlaces())
                     this.Close();
             }
-
             _generateMonthlyDays = new GenerateMonthlyDays();
             _calculatedMonthlyDays = new CalculatedMonthlyDays();
             _calculateDuty = new CalculateDuty();

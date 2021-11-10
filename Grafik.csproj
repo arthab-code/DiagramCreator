@@ -97,6 +97,7 @@
     <Compile Include="ConfigWindow.xaml.cs">
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DiagramSetter.cs" />
     <Compile Include="DutyDisplayer.cs" />
     <Compile Include="EditWorker.xaml.cs">
       <DependentUpon>EditWorker.xaml</DependentUpon>
@@ -111,6 +112,7 @@
     <Compile Include="IWorkPlacesDatabase.cs" />
     <Compile Include="MonthlyDays.cs" />
     <Compile Include="Paths.cs" />
+    <Compile Include="PermamentDiagramCreator.cs" />
     <Compile Include="WorkDiagram.cs" />
     <Compile Include="Worker.cs" />
     <Compile Include="WorkerBuilder.cs" />
