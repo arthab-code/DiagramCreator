@@ -72,14 +72,14 @@ namespace Grafik
             return this;
         }
 
-        public IWorkerBuilder SetFreeDays(byte[] freeDays)
+      /*  public IWorkerBuilder SetFreeDays(byte[] freeDays)
         {
             for (int i=0; i < freeDays.Length-1; i++)
             {
                 _worker.FreeDays.Add(freeDays[i]);
             }
             return this;
-        }
+        } */
 
         public IWorkerBuilder SetWorkSystem(WorkSystem workSystem)
         {

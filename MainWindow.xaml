@@ -48,7 +48,7 @@
                         Wybierz rok i miesiąc
                     </TextBlock>
                     <Calendar x:Name="CalendarWPF" SelectedDatesChanged="SelectedDateChanges" DisplayMode="Year" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
-                    <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" Height="50">GENERUJ GRAFIK</Button>
+                    <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" Height="50" x:Name="GenerateDiagram" Click="GenerateDiagram_Click">GENERUJ GRAFIK</Button>
                 </Grid>
             </TabItem>
             <TabItem Width="100" Header="Pracownicy">

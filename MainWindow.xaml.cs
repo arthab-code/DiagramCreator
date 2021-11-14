@@ -22,6 +22,8 @@ namespace Grafik
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Calendar calendar;
+
         private WorkersManager workerManager;
         private Paths _paths = new Paths();
         private GenerateMonthlyDays _generateMonthlyDays;
@@ -179,7 +181,7 @@ namespace Grafik
 
         private void SelectedDateChanges(object sender, SelectionChangedEventArgs e)
         {
-            Calendar calendar = (Calendar)sender;
+            calendar = (Calendar)sender;
 
             int year = calendar.SelectedDate.Value.Year;
             int month = calendar.SelectedDate.Value.Month;
@@ -210,6 +212,21 @@ namespace Grafik
             CalculateDuty();
 
             _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
+        }
+
+        private void GenerateDiagram_Click(object sender, RoutedEventArgs e)
+        {
+            int month = calendar.SelectedDate.Value.Month;
+            int year = calendar.SelectedDate.Value.Year;
+            int days = DateTime.DaysInMonth(year, month);
+            WorkDiagram workDiagram = new WorkDiagram(days);
+            DiagramSetter diagramSetter = new DiagramSetter(workerManager.Workers, workDiagram);
+            PermamentDiagramCreator permDiagram = new PermamentDiagramCreator(workDiagram);
+            permDiagram.AddDriverDays();
+            permDiagram.AddDriverNight();
+            DiagramShowHelper dsh = new DiagramShowHelper();
+            dsh.SetDiagramCreator(permDiagram);
+            dsh.ShowDialog();
         }
     }
 }

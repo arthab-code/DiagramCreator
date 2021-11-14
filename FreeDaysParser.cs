@@ -16,18 +16,23 @@ namespace Grafik
 {
     public static class FreeDaysParser
     {
-        public static bool ParseFreeDays(List<byte> freeDays, string freeDaysFromTextBox )
+        public static bool ParseFreeDays(char[] freeDays, string freeDaysFromTextBox )
         {
-            freeDays.Clear();
+            /* clear freeDays array */
+            for (int i = 0; i < freeDays.Length; i++)
+            {
+                freeDays[i] = 'n';
+            }
 
             var freeDaysString = freeDaysFromTextBox;
 
             if (freeDaysString.Length == 0)
                 return true;
 
+            /* Add single free day to char array */
             if (freeDaysString.Length == 1)
             {
-                freeDays.Add(byte.Parse(freeDaysString));
+                freeDays[byte.Parse(freeDaysString)] = 'x';
                 return true;
             }
 
@@ -36,9 +41,18 @@ namespace Grafik
             try
             {
                 freeDaysStringArray = freeDaysString.Split(',');
-                for (int i = 0; i < freeDaysStringArray.Length; i++)
+
+                for (int i = 0; i < freeDays.Length; i++)
                 {
-                    freeDays.Add(byte.Parse(freeDaysStringArray[i]));
+                    for (int j = 0; j < freeDaysStringArray.Length; j++)
+                    {
+                        if (i == int.Parse(freeDaysStringArray[j]))
+                        {
+                            freeDays[i-1] = 'x';
+                            continue;
+                        }
+                    }
+
                 }
 
                 return true;

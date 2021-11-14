@@ -109,14 +109,16 @@ namespace Grafik
 
             for (int i=0; i < read.Length; i++)
             {
-                if (i == read.Length-1)
-                {
-                    tempWorker.FreeDaysDisplay += read[i];
-                    break;
-                }
-                tempWorker.FreeDaysDisplay += read[i] + ",";
-            }
+                tempWorker.FreeDays[i] = char.Parse(read[i]);
 
+                if (read[i] == "x")
+                {
+                    tempWorker.FreeDaysDisplay += (i+1).ToString() + ",";
+                    continue;
+                }
+            }
+            var removeLastChar =  tempWorker.FreeDaysDisplay.Remove(tempWorker.FreeDaysDisplay.Length-1, 1);
+            tempWorker.FreeDaysDisplay = removeLastChar;
             return tempWorker;
         }
 
@@ -210,8 +212,8 @@ namespace Grafik
 
             using (StreamWriter streamWriter = new StreamWriter(freeTimePath))
             {
-                foreach (var item in _worker.FreeDays)
-                    streamWriter.WriteLine(item.ToString());
+                for(int i = 0; i < _worker.FreeDays.Length; i++)
+                    streamWriter.WriteLine(_worker.FreeDays[i].ToString());
 
                 streamWriter.Close();
             }

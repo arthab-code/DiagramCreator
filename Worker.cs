@@ -11,7 +11,7 @@ namespace Grafik
         private string _name;
         private string _surname;
         private string _workPlaceName;
-        private List<byte>_freeDays;
+        private char[]_freeDays;
         private int _workDaysPerMonth;
         private int _driverHoursDay;
         private int _executiveHoursDay;
@@ -20,12 +20,13 @@ namespace Grafik
         private WorkType _workType;
         private AgreementType _agreementType;
         private WorkSystem _workSystem;
-        private char[,] _workDiagram;
+        private char[] _workDiagramDay;
+        private char[] _workDiagramNight;
         private string _freeDaysDisplay;
 
         public Worker()
         {
-            _freeDays = new List<byte>();
+            _freeDays = new char[32];
         }
 
         public string Name
@@ -46,7 +47,7 @@ namespace Grafik
             set => _workPlaceName = value; 
         }
 
-        public List<byte> FreeDays
+        public char[] FreeDays
         {
             get => _freeDays; 
             set => _freeDays = value; 
@@ -89,11 +90,6 @@ namespace Grafik
             get => _agreementType; 
             set => _agreementType = value; 
         }
-        public char[,] WorkDiagram 
-        { 
-            get => _workDiagram; 
-            set => _workDiagram = value; 
-        }
         public WorkSystem WorkSystem 
         { 
             get => _workSystem; 
@@ -104,6 +100,7 @@ namespace Grafik
             get => _freeDaysDisplay; 
             set => _freeDaysDisplay = value; 
         }
-
+        public char[] WorkDiagramDay { get => _workDiagramDay; set => _workDiagramDay = value; }
+        public char[] WorkDiagramNight { get => _workDiagramNight; set => _workDiagramNight = value; }
     }
 }

@@ -98,6 +98,9 @@
       <DependentUpon>ConfigWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DiagramSetter.cs" />
+    <Compile Include="DiagramShowHelper.xaml.cs">
+      <DependentUpon>DiagramShowHelper.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DutyDisplayer.cs" />
     <Compile Include="EditWorker.xaml.cs">
       <DependentUpon>EditWorker.xaml</DependentUpon>
@@ -133,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiagramShowHelper.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

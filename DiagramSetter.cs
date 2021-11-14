@@ -20,6 +20,11 @@ namespace Grafik
                 else if (item.AgreementType == AgreementType.Other)
                     _workDiagram.OtherAgreementWorkers.Add(item);
             }
+
+            _workDiagram.WorkDiagramDayDriver = new char[_workDiagram.MonthDays];
+            _workDiagram.WorkDiagramNightDriver = new char[_workDiagram.MonthDays];
+            _workDiagram.WorkDiagramDayExecutive = new char[_workDiagram.MonthDays];
+            _workDiagram.WorkDiagramNightExecutive = new char[_workDiagram.MonthDays];
         }
     }
 }
