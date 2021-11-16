@@ -22,6 +22,7 @@ namespace Grafik
         private WorkSystem _workSystem;
         private char[] _workDiagramDay;
         private char[] _workDiagramNight;
+        private string[] _diagramDisplayer;
         private string _freeDaysDisplay;
 
         public Worker()
@@ -102,5 +103,6 @@ namespace Grafik
         }
         public char[] WorkDiagramDay { get => _workDiagramDay; set => _workDiagramDay = value; }
         public char[] WorkDiagramNight { get => _workDiagramNight; set => _workDiagramNight = value; }
+        public string[] DiagramDisplayer { get => _diagramDisplayer; set => _diagramDisplayer = value; }
     }
 }

@@ -223,7 +223,9 @@ namespace Grafik
             DiagramSetter diagramSetter = new DiagramSetter(workerManager.Workers, workDiagram);
             PermamentDiagramCreator permDiagram = new PermamentDiagramCreator(workDiagram);
             permDiagram.AddDriverDays();
+            permDiagram.AddExecutiveDays();
             permDiagram.AddDriverNight();
+            permDiagram.AddExecutiveNight();
             DiagramShowHelper dsh = new DiagramShowHelper();
             dsh.SetDiagramCreator(permDiagram);
             dsh.ShowDialog();

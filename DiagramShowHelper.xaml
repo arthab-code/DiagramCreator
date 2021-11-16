@@ -5,12 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grafik"
         mc:Ignorable="d"
-        Title="DiagramShowHelper" Height="450" Width="800">
+        Title="DiagramShowHelper" Height="450" Width="1200">
     <Grid>
         <StackPanel>
-            <TextBlock x:Name="textBlock"></TextBlock>
-            <TextBlock x:Name="FULLWORKDAY"></TextBlock>
-            <TextBlock x:Name="FULLWORKNIGHT"></TextBlock>
+            <ListView x:Name="DiagramDisplayer">
+                <ListView.View>
+                    <GridView x:Name="Columns">
+                        <GridView.Columns>
+                            <GridViewColumn Width="80" Header="Imię" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                            <GridViewColumn Width="80" Header="Nazwisko" DisplayMemberBinding="{Binding Surname}"></GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
     </Grid>
 </Window>

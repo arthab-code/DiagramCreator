@@ -117,8 +117,14 @@ namespace Grafik
                     continue;
                 }
             }
-            var removeLastChar =  tempWorker.FreeDaysDisplay.Remove(tempWorker.FreeDaysDisplay.Length-1, 1);
-            tempWorker.FreeDaysDisplay = removeLastChar;
+            if (tempWorker.FreeDaysDisplay != null ) // TU JEST BLAD -> LICZBY DWUCYFROWE BEDA UCINANE O 1
+            {
+                if (tempWorker.FreeDaysDisplay.Length > 2 && tempWorker.FreeDaysDisplay[1] != ',')
+                {
+                    var removeLastChar = tempWorker.FreeDaysDisplay.Remove(tempWorker.FreeDaysDisplay.Length - 1, 1);
+                    tempWorker.FreeDaysDisplay = removeLastChar;
+                }
+            } 
             return tempWorker;
         }
 

@@ -23,6 +23,7 @@ namespace Grafik
         public DiagramShowHelper()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         public void SetDiagramCreator(PermamentDiagramCreator permDiagram)
@@ -33,39 +34,28 @@ namespace Grafik
 
         public void ShowDiagram()
         {
-            textBlock.Text = "\t";
-            foreach (Worker item in _permDiagram.WorkDiagram.PermanentWorkers)
+            foreach(var item in _permDiagram.WorkDiagram.PermanentWorkers)
             {
-                textBlock.Text += item.Name + " " + item.Surname + "   ";
-                for (int i=0; i< _permDiagram.WorkDiagram.MonthDays; i++)
-                {
-                    textBlock.Text += i+1+" : "+item.WorkDiagramDay[i] + "  " + item.WorkDiagramNight[i] + " | ";
-                }
+                item.DiagramDisplayer = new string[_permDiagram.WorkDiagram.MonthDays];
 
-                textBlock.Text += "\n\t";
-            }
-
-            FULLWORKDAY.Text = "\t";
-
-            
                 for (int i = 0; i < _permDiagram.WorkDiagram.MonthDays; i++)
                 {
-                    FULLWORKDAY.Text += i + 1 + " : " + _permDiagram.WorkDiagram.WorkDiagramDayDriver[i] + " | ";
+                    item.DiagramDisplayer[i] += item.WorkDiagramDay[i].ToString() + " " + item.WorkDiagramNight[i].ToString();
                 }
+            }
 
-            FULLWORKDAY.Text += "\n\t";
-
-            FULLWORKNIGHT.Text = "\t";
-
+            DiagramDisplayer.ItemsSource = _permDiagram.WorkDiagram.PermanentWorkers;
 
             for (int i = 0; i < _permDiagram.WorkDiagram.MonthDays; i++)
             {
-                FULLWORKNIGHT.Text += i + 1 + " : " + _permDiagram.WorkDiagram.WorkDiagramNightDriver[i] + " | ";
+                GridViewColumn gvc = new GridViewColumn();
+                gvc.DisplayMemberBinding = new Binding("DiagramDisplayer["+i+"]");
+                gvc.Width = 40;
+                gvc.Header = (i + 1).ToString();
+                Columns.Columns.Add(gvc);           
             }
 
-            FULLWORKNIGHT.Text += "\n\t"; 
-
-
+           
         }
     }
 }
