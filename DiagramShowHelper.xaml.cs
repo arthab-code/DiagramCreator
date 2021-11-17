@@ -19,14 +19,14 @@ namespace Grafik
     /// </summary>
     public partial class DiagramShowHelper : Window
     {
-        private PermamentDiagramCreator _permDiagram;
+        private DiagramCreator _permDiagram;
         public DiagramShowHelper()
         {
             InitializeComponent();
             DataContext = this;
         }
 
-        public void SetDiagramCreator(PermamentDiagramCreator permDiagram)
+        public void SetDiagramCreator(DiagramCreator permDiagram)
         {
             _permDiagram = permDiagram;
             ShowDiagram();

@@ -222,13 +222,11 @@ namespace Grafik
             WorkDiagram workDiagram = new WorkDiagram(days);
             DiagramSetter diagramSetter = new DiagramSetter(workerManager.Workers, workDiagram);
             PermamentDiagramCreator permDiagram = new PermamentDiagramCreator(workDiagram);
-            permDiagram.AddDriverDays();
-            permDiagram.AddExecutiveDays();
-            permDiagram.AddDriverNight();
-            permDiagram.AddExecutiveNight();
+            permDiagram.Create(SelectedWorkPlace.Text);
             DiagramShowHelper dsh = new DiagramShowHelper();
             dsh.SetDiagramCreator(permDiagram);
             dsh.ShowDialog();
+            RefreshWorkersList();
         }
     }
 }
