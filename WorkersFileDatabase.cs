@@ -62,10 +62,10 @@ namespace Grafik
                 int workTypeTemp = int.Parse(streamReader.ReadLine());
                 tempWorker.WorkType = (WorkType)workTypeTemp;
                 tempWorker.WorkPlaceName = streamReader.ReadLine();
-                tempWorker.DriverHoursDay = int.Parse(streamReader.ReadLine());
-                tempWorker.DriverHoursNight = int.Parse(streamReader.ReadLine());
-                tempWorker.ExecutiveHoursDay = int.Parse(streamReader.ReadLine());
-                tempWorker.ExecutiveHoursNight = int.Parse(streamReader.ReadLine());
+                tempWorker.DriverDutyDay = int.Parse(streamReader.ReadLine());
+                tempWorker.DriverDutyNight = int.Parse(streamReader.ReadLine());
+                tempWorker.ExecutiveDutyDay = int.Parse(streamReader.ReadLine());
+                tempWorker.ExecutiveDutyNight = int.Parse(streamReader.ReadLine());
 
                 /*
                  *                 streamWriter.WriteLine(name);
@@ -193,10 +193,10 @@ namespace Grafik
             var agreementType = agreementTypeTemp.ToString();
             int workSystemTemp = (int)_worker.WorkSystem;
             var workSystem = workSystemTemp.ToString();
-            var driverHoursDay = _worker.DriverHoursDay.ToString();
-            var driverHoursNight = _worker.DriverHoursNight.ToString();
-            var executiveHoursDay = _worker.ExecutiveHoursDay.ToString();
-            var executiveHoursNight = _worker.ExecutiveHoursNight.ToString();
+            var driverHoursDay = _worker.DriverDutyDay.ToString();
+            var driverHoursNight = _worker.DriverDutyNight.ToString();
+            var executiveHoursDay = _worker.ExecutiveDutyDay.ToString();
+            var executiveHoursNight = _worker.ExecutiveDutyNight.ToString();
 
             using (StreamWriter streamWriter = new StreamWriter(workerPath))
             {

@@ -89,10 +89,10 @@
                         <TextBlock FontSize="18" FontWeight="Bold">Umowa : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.AgreementType}"></TextBlock></TextBlock>
                         <TextBlock FontSize="18" FontWeight="Bold">Stanowisko : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkType}"></TextBlock></TextBlock>
                         <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkPlaceName}"></TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Dzień: <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverHoursDay}"></TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Noc : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverHoursNight}"></TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Dzień : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.ExecutiveHoursDay}"></TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Noc : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.ExecutiveHoursNight}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Dzień: <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverDutyDay}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Noc : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverDutyNight}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Dzień : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.ExecutiveDutyDay}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierownik Noc : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.ExecutiveDutyNight}"></TextBlock></TextBlock>
                         <TextBlock FontSize="18" FontWeight="Bold">Dni wolne od pracy: <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.FreeDaysDisplay}"></TextBlock></TextBlock>
                         <TextBlock></TextBlock>
                         <UniformGrid>

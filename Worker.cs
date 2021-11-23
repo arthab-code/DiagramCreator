@@ -66,22 +66,22 @@ namespace Grafik
             set => _workType = value; 
         }
 
-        public int DriverHoursDay 
+        public int DriverDutyDay 
         { 
             get => _driverHoursDay; 
             set => _driverHoursDay = value; 
         }
-        public int ExecutiveHoursDay 
+        public int ExecutiveDutyDay 
         { 
             get => _executiveHoursDay; 
             set => _executiveHoursDay = value; 
         }
-        public int DriverHoursNight 
+        public int DriverDutyNight 
         { 
             get => _driverHoursNight; 
             set => _driverHoursNight = value; 
         }
-        public int ExecutiveHoursNight 
+        public int ExecutiveDutyNight 
         {
             get => _executiveHoursNight;
             set => _executiveHoursNight = value; 

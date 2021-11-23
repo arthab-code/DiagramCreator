@@ -11,6 +11,7 @@ namespace Grafik
         private Worker _worker = new Worker();
         public Worker Build()
         {
+            _worker.WorkDaysPerMonth = _worker.DriverDutyDay + _worker.DriverDutyNight + _worker.ExecutiveDutyDay + _worker.ExecutiveDutyNight;
             return _worker;
         }
 
@@ -34,23 +35,23 @@ namespace Grafik
 
         public IWorkerBuilder SetDriverHoursDay(int driverHoursDay)
         {
-            _worker.DriverHoursDay = driverHoursDay;
+            _worker.DriverDutyDay = driverHoursDay;
             return this;
         }
 
         public IWorkerBuilder SetDriverHoursNight(int driverHoursNight)
         {
-            _worker.DriverHoursNight = driverHoursNight;
+            _worker.DriverDutyNight = driverHoursNight;
             return this;
         }
         public IWorkerBuilder SetExecutiveHoursDay(int executiveHoursDay)
         {
-            _worker.ExecutiveHoursDay = executiveHoursDay;
+            _worker.ExecutiveDutyDay = executiveHoursDay;
             return this;
         }
         public IWorkerBuilder SetExecutiveHoursNight(int executiveHoursNight)
         {
-            _worker.ExecutiveHoursNight = executiveHoursNight;
+            _worker.ExecutiveDutyNight = executiveHoursNight;
             return this;
         }
 
@@ -71,15 +72,6 @@ namespace Grafik
             _worker.AgreementType = agreementType;
             return this;
         }
-
-      /*  public IWorkerBuilder SetFreeDays(byte[] freeDays)
-        {
-            for (int i=0; i < freeDays.Length-1; i++)
-            {
-                _worker.FreeDays.Add(freeDays[i]);
-            }
-            return this;
-        } */
 
         public IWorkerBuilder SetWorkSystem(WorkSystem workSystem)
         {

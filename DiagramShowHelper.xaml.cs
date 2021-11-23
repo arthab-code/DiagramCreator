@@ -19,43 +19,60 @@ namespace Grafik
     /// </summary>
     public partial class DiagramShowHelper : Window
     {
-        private DiagramCreator _permDiagram;
+        private List<Worker> _workers;
+        private WorkDiagram _workDiagram;
         public DiagramShowHelper()
         {
             InitializeComponent();
             DataContext = this;
         }
 
-        public void SetDiagramCreator(DiagramCreator permDiagram)
+        public void SetDiagramCreator(List<Worker> workers, WorkDiagram workDiagram, string workPlace)
         {
-            _permDiagram = permDiagram;
-            ShowDiagram();
+            _workers = workers;
+            _workDiagram = workDiagram;
+            ShowDiagram(workPlace);
         }
 
-        public void ShowDiagram()
+        public void ShowDiagram(string workPlace)
         {
-            foreach(var item in _permDiagram.WorkDiagram.PermanentWorkers)
+            foreach(var item in _workers)
             {
-                item.DiagramDisplayer = new string[_permDiagram.WorkDiagram.MonthDays];
+                item.DiagramDisplayer = new string[_workDiagram.MonthDays];
 
-                for (int i = 0; i < _permDiagram.WorkDiagram.MonthDays; i++)
+                for (int i = 0; i < _workDiagram.MonthDays; i++)
                 {
                     item.DiagramDisplayer[i] += item.WorkDiagramDay[i].ToString() + " " + item.WorkDiagramNight[i].ToString();
                 }
             }
+            List<Worker> tempWorkers = new List<Worker>();
 
-            DiagramDisplayer.ItemsSource = _permDiagram.WorkDiagram.PermanentWorkers;
+            foreach(var item in _workers)
+            {
+                if (item.WorkPlaceName == workPlace)
+                    tempWorkers.Add(item);
+            }
 
-            for (int i = 0; i < _permDiagram.WorkDiagram.MonthDays; i++)
+            DiagramDisplayer.ItemsSource = tempWorkers;
+
+            for (int i = 0; i < _workDiagram.MonthDays; i++)
             {
                 GridViewColumn gvc = new GridViewColumn();
                 gvc.DisplayMemberBinding = new Binding("DiagramDisplayer["+i+"]");
                 gvc.Width = 40;
                 gvc.Header = (i + 1).ToString();
-                Columns.Columns.Add(gvc);           
-            }
+                Columns.Columns.Add(gvc);         
+            }          
+        }
 
-           
+        private void Print_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog pD = new PrintDialog();
+
+            if (pD.ShowDialog() == true)
+            {
+                pD.PrintVisual(DiagramDisplayer, "Diagram");
+            }
         }
     }
 }

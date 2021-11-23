@@ -81,12 +81,12 @@ namespace Grafik
             workPlacesManager.LoadWorkPlacesToList();
             WorkPlaces.ItemsSource = workPlacesManager.WorkPlaces;
 
-            WorkPlaces.SelectedValue = _worker.WorkPlaceName;
+            WorkPlaces.SelectedItem = _worker.WorkPlaceName;
 
-            AddDriverDay.Text = _worker.DriverHoursDay.ToString();
-            AddDriverNight.Text = _worker.DriverHoursNight.ToString();
-            AddExecutiveDay.Text = _worker.ExecutiveHoursDay.ToString();
-            AddExecutiveNight.Text = _worker.ExecutiveHoursNight.ToString();
+            AddDriverDay.Text = _worker.DriverDutyDay.ToString();
+            AddDriverNight.Text = _worker.DriverDutyNight.ToString();
+            AddExecutiveDay.Text = _worker.ExecutiveDutyDay.ToString();
+            AddExecutiveNight.Text = _worker.ExecutiveDutyNight.ToString();
             FreeDays.Text = _worker.FreeDaysDisplay;
         }
 
@@ -110,10 +110,10 @@ namespace Grafik
             if (FreeDaysParser.ParseFreeDays(_worker.FreeDays, FreeDays.Text))
             {
                 InitializeRadioButtons();
-                _worker.DriverHoursDay = driverDay;
-                _worker.DriverHoursNight = driverNight;
-                _worker.ExecutiveHoursDay = executiveDay;
-                _worker.ExecutiveHoursNight = executiveNight;
+                _worker.DriverDutyDay = driverDay;
+                _worker.DriverDutyNight = driverNight;
+                _worker.ExecutiveDutyDay = executiveDay;
+                _worker.ExecutiveDutyNight = executiveNight;
                 _worker.WorkPlaceName = WorkPlaces.SelectedValue.ToString();
 
                 WorkersManager workersManager = new WorkersManager();

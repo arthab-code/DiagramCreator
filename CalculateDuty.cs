@@ -14,7 +14,7 @@ namespace Grafik
             foreach (var worker in workers)
             {
                 if (worker.WorkPlaceName == workPlace)
-                    duty += worker.DriverHoursDay;
+                    duty += worker.DriverDutyDay;
             }
             Console.WriteLine(duty);
             calculatedMonthlyDays.DriverCalculatedDay = monthlyDays.DriverHoursDay - duty;
@@ -26,7 +26,7 @@ namespace Grafik
             foreach (var worker in workers)
             {
                 if (worker.WorkPlaceName == workPlace)
-                    duty += worker.DriverHoursNight;
+                    duty += worker.DriverDutyNight;
             }
             calculatedMonthlyDays.DriverCalculatedNight = monthlyDays.DriverHoursNight - duty;
 
@@ -38,7 +38,7 @@ namespace Grafik
             foreach (var worker in workers)
             {
                 if (worker.WorkPlaceName == workPlace)
-                    duty += worker.ExecutiveHoursDay;
+                    duty += worker.ExecutiveDutyDay;
             }
             calculatedMonthlyDays.ExecutiveCalculatedDay = monthlyDays.ExecutiveHoursDay - duty;
         }
@@ -49,7 +49,7 @@ namespace Grafik
             foreach (var worker in workers)
             {
                 if (worker.WorkPlaceName == workPlace)
-                    duty += worker.ExecutiveHoursNight;
+                    duty += worker.ExecutiveDutyNight;
             }
             calculatedMonthlyDays.ExecutiveCalculatedNight = monthlyDays.ExecutiveHoursNight - duty;
         }
