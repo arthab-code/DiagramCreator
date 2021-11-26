@@ -24,5 +24,15 @@ namespace Grafik
         public List<Worker> ExecutiveNight { get => _executiveNight; set => _executiveNight = value; }
 
         public abstract void Create(string workPlace);
+
+        protected void CheckAndCorrectStepDutyRange()
+        {
+            /* Index Range Exception safety */
+            if (_stepDuty > _workDiagram.MonthDays - 1)
+            {
+                _stepDuty = _stepDuty - _workDiagram.MonthDays;
+            }
+
+        }
     }
 }

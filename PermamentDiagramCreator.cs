@@ -52,7 +52,7 @@ namespace Grafik
             /* Set driver day diagram */
             foreach (var item in _dayDuties)
             {
-                _stepDuty = rand.Next(0, _workDiagram.MonthDays);
+                _stepDuty =  rand.Next(0, 11);
                 while (item.DriverDutyDay > 0 || item.ExecutiveDutyDay > 0)
                 {
                     CheckAndCorrectStepDutyRange();
@@ -62,7 +62,7 @@ namespace Grafik
                     {
                         if (_workDiagram.WorkDiagramDayDriver[_stepDuty] != 'x')
                         {
-                            if (item.WorkDiagramDay[_stepDuty] != 'K' && item.WorkDiagramDay[_stepDuty] != 'X')
+                            if (item.WorkDiagramDay[_stepDuty] != 'K' && item.WorkDiagramDay[_stepDuty] != 'X' && item.FreeDays[_stepDuty] != 'x')
                             {
                                 _workDiagram.WorkDiagramDayDriver[_stepDuty] = 'x';
                                 item.WorkDiagramDay[_stepDuty] = 'K';
@@ -87,7 +87,7 @@ namespace Grafik
                         /* Executive day setter */
                         if (_workDiagram.WorkDiagramDayExecutive[_stepDuty] != 'x')
                         {
-                            if (item.WorkDiagramDay[_stepDuty] != 'K' && item.WorkDiagramDay[_stepDuty] != 'X')
+                            if (item.WorkDiagramDay[_stepDuty] != 'K' && item.WorkDiagramDay[_stepDuty] != 'X' && item.FreeDays[_stepDuty] != 'x')
                             {
                                 _workDiagram.WorkDiagramDayExecutive[_stepDuty] = 'x';
                                 item.WorkDiagramDay[_stepDuty] = 'X';
@@ -113,7 +113,7 @@ namespace Grafik
         private void AddNightDuties(string workPlace)
         {
             _nightDuties = new List<Worker>();
-            /* DUTY NightSETTING LIST */
+            /* DUTY Night SETTING LIST */
             foreach (var item in _workDiagram.PermanentWorkers)
             {
                 if ((item.DriverDutyNight > 0 || item.ExecutiveDutyNight > 0) && item.WorkPlaceName == workPlace)
@@ -143,12 +143,12 @@ namespace Grafik
 
                     CheckAndCorrectStepDutyRange();
 
-                    /* Driver day setter */
+                    /* Driver nitght setter */
                     if (item.DriverDutyNight > 0)
                     {
                         if (_workDiagram.WorkDiagramNightDriver[_stepDuty] != 'x')
                         {
-                            if (item.WorkDiagramNight[_stepDuty] != 'L' && item.WorkDiagramNight[_stepDuty] != 'O')
+                            if (item.WorkDiagramNight[_stepDuty] != 'L' && item.WorkDiagramNight[_stepDuty] != 'O' && item.FreeDays[_stepDuty] != 'x')
                             {
 
                                 /* Check this same day duty */
@@ -198,7 +198,7 @@ namespace Grafik
                                 continue;
                             }
 
-                            if (item.WorkDiagramNight[_stepDuty] != 'L' && item.WorkDiagramNight[_stepDuty] != 'O')
+                            if (item.WorkDiagramNight[_stepDuty] != 'L' && item.WorkDiagramNight[_stepDuty] != 'O' && item.FreeDays[_stepDuty] != 'x')
                             {
                                 /* Check tommorow that worker have day duty */
                                 if (_stepDuty < _workDiagram.MonthDays - 1)
@@ -230,15 +230,7 @@ namespace Grafik
                 }
             }
         }
-        private void CheckAndCorrectStepDutyRange()
-        {
-            /* Index Range Exception safety */
-            if (_stepDuty > _workDiagram.MonthDays - 1)
-            {
-                _stepDuty = _stepDuty - _workDiagram.MonthDays;
-            }
 
-        }
     }     
     
 }

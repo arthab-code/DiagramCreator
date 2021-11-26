@@ -223,8 +223,8 @@ namespace Grafik
             DiagramSetter diagramSetter = new DiagramSetter(workerManager.Workers, workDiagram);
             PermamentDiagramCreator permDiagram = new PermamentDiagramCreator(workDiagram);
             permDiagram.Create(SelectedWorkPlace.Text);
-          //  OtherDiagramCreator otherDiagram = new OtherDiagramCreator(workDiagram);
-          //  otherDiagram.Create(SelectedWorkPlace.Text);
+            OtherDiagramCreator otherDiagram = new OtherDiagramCreator(workDiagram);
+            otherDiagram.Create(SelectedWorkPlace.Text);
             DiagramShowHelper dsh = new DiagramShowHelper();
             dsh.SetDiagramCreator(workerManager.Workers, workDiagram, WorkPlaces.SelectedItem.ToString());
             dsh.ShowDialog();
