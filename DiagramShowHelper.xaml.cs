@@ -32,6 +32,7 @@ namespace Grafik
             _workers = workers;
             _workDiagram = workDiagram;
             ShowDiagram(workPlace);
+            SetWarnings();
         }
 
         public void ShowDiagram(string workPlace)
@@ -62,7 +63,7 @@ namespace Grafik
                 gvc.Width = 40;
                 gvc.Header = (i + 1).ToString();
                 Columns.Columns.Add(gvc);         
-            }          
+            }
         }
 
         private void Print_Click(object sender, RoutedEventArgs e)
@@ -73,6 +74,49 @@ namespace Grafik
             {
                 pD.PrintVisual(DiagramDisplayer, "Diagram");
             }
+        }
+
+        private void SetWarnings()
+        {
+            string temp = "";
+            int i = 0;
+            foreach (var item in _workDiagram.WorkDiagramDayDriver)
+            {
+                i++;
+                if (item != 'x')
+                    temp += i.ToString() + " , ";
+            }
+            driverDayWarning.Text = temp;
+
+            temp = "";
+            i = 0;
+            foreach (var item in _workDiagram.WorkDiagramNightDriver)
+            {
+                i++;
+                if (item != 'x')
+                    temp += i.ToString() + " , ";
+            }
+            driverNightWarning.Text = temp;
+
+            temp = "";
+            i = 0;
+            foreach (var item in _workDiagram.WorkDiagramDayExecutive)
+            {
+                i++;
+                if (item != 'x')
+                    temp += i.ToString() + " , ";
+            }
+            executiveDayWarning.Text = temp;
+
+            temp = "";
+            i = 0;
+            foreach (var item in _workDiagram.WorkDiagramNightExecutive)
+            {
+                i++;
+                if (item != 'x')
+                    temp += i.ToString() + " , ";
+            }
+            executiveNightWarning.Text = temp;
         }
     }
 }

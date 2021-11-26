@@ -124,6 +124,8 @@ namespace Grafik
                     _nightDuties.Add(item);
             }
 
+            /* DIAGRAM CREATOR FOR 24h WORKERS */
+
             /* Driver night setter for 24h workers with -X-L- configuration*/
             for (int i = 0; i < _workDiagram.MonthDays; i++)
             {
@@ -131,6 +133,8 @@ namespace Grafik
                 {
                     for (int j = 0; j < _nightDuties.Count; j++)
                     {
+                        if (_nightDuties[j].WorkSystem != WorkSystem.FullDuty) continue;
+
                         if (_workDiagram.WorkDiagramNightDriver[i] == 'x') break;
 
                         if (_nightDuties[j].DriverDutyNight <= 0) continue;
@@ -161,6 +165,8 @@ namespace Grafik
                 {
                     for (int j = 0; j < _nightDuties.Count; j++)
                     {
+                        if (_nightDuties[j].WorkSystem != WorkSystem.FullDuty) continue;
+
                         if (_workDiagram.WorkDiagramNightExecutive[i] == 'x') break;
 
                         if (_nightDuties[j].ExecutiveDutyNight <= 0) continue;
@@ -174,7 +180,7 @@ namespace Grafik
 
                         if (_nightDuties[j].WorkDiagramDay[i] == 'K')
                         {
-                            _workDiagram.WorkDiagramNightDriver[i] = 'x';
+                            _workDiagram.WorkDiagramNightExecutive[i] = 'x';
                             _nightDuties[j].ExecutiveDutyNight -= 1;
                             _nightDuties[j].WorkDiagramNight[i] = 'O';
 
@@ -192,6 +198,8 @@ namespace Grafik
                 {
                     for (int j = 0; j < _nightDuties.Count; j++)
                     {
+                        if (_nightDuties[j].WorkSystem != WorkSystem.FullDuty) continue;
+
                         if (_workDiagram.WorkDiagramNightExecutive[i] == 'x') break;
 
                         if (_nightDuties[j].ExecutiveDutyNight <= 0) continue;
@@ -205,7 +213,7 @@ namespace Grafik
 
                         if (_nightDuties[j].WorkDiagramDay[i] == 'X')
                         {
-                            _workDiagram.WorkDiagramNightDriver[i] = 'x';
+                            _workDiagram.WorkDiagramNightExecutive[i] = 'x';
                             _nightDuties[j].ExecutiveDutyNight -= 1;
                             _nightDuties[j].WorkDiagramNight[i] = 'O';
 
@@ -217,6 +225,67 @@ namespace Grafik
             }
             /* END FOR 24h WORKERS */
 
+            /* DIAGRAM CREATOR FOR 12h WORKERS */
+            /* Driver night setter for 12h workers */
+            for (int i = 0; i < _workDiagram.MonthDays; i++)
+            {
+                if (_workDiagram.WorkDiagramNightDriver[i] != 'x')
+                {
+                    for (int j = 0; j < _nightDuties.Count; j++)
+                    {
+                        if (_workDiagram.WorkDiagramNightDriver[i] == 'x') break;
+
+                        if (_nightDuties[j].DriverDutyNight <= 0) continue;
+
+                        if (i > 0 && i < _workDiagram.MonthDays - 1)
+                        {
+                            if (_nightDuties[j].WorkDiagramDay[i + 1] == 'K' || _nightDuties[j].WorkDiagramDay[i + 1] == 'X')
+                                continue;
+                        }
+
+                        if (_nightDuties[j].WorkDiagramDay[i] == 'K' || _nightDuties[j].WorkDiagramDay[i] == 'X'
+                            || _nightDuties[j].WorkDiagramNight[i] == 'L' || _nightDuties[j].WorkDiagramNight[i] == 'O')
+                        {
+                            continue;
+                        }
+
+                        _workDiagram.WorkDiagramNightDriver[i] = 'x';
+                        _nightDuties[j].DriverDutyNight -= 1;
+                        _nightDuties[j].WorkDiagramNight[i] = 'L';
+                    }
+                }
+            }
+                /* Executive night setter for 12h workers */
+                for (int i = 0; i < _workDiagram.MonthDays; i++)
+                {
+                    if (_workDiagram.WorkDiagramNightExecutive[i] != 'x')
+                    {
+                        for (int j = 0; j < _nightDuties.Count; j++)
+                        {
+                            if (_workDiagram.WorkDiagramNightExecutive[i] == 'x') break;
+
+                            if (_nightDuties[j].ExecutiveDutyNight <= 0) continue;
+
+                            if (i > 0 && i < _workDiagram.MonthDays - 1)
+                            {
+                                if (_nightDuties[j].WorkDiagramDay[i + 1] == 'K' || _nightDuties[j].WorkDiagramDay[i + 1] == 'X')
+                                    continue;
+                            }
+
+                            if (_nightDuties[j].WorkDiagramDay[i] == 'K' || _nightDuties[j].WorkDiagramDay[i] == 'X'
+                                || _nightDuties[j].WorkDiagramNight[i] == 'L' || _nightDuties[j].WorkDiagramNight[i] == 'O')
+                            {
+                                continue;
+                            }
+
+                            _workDiagram.WorkDiagramNightExecutive[i] = 'x';
+                            _nightDuties[j].ExecutiveDutyNight -= 1;
+                            _nightDuties[j].WorkDiagramNight[i] = 'O';
+                        }
+                    }
+
+                }
+            
         }
 
     }
