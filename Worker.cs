@@ -24,6 +24,9 @@ namespace Grafik
         private char[] _workDiagramNight;
         private string[] _diagramDisplayer;
         private string _freeDaysDisplay;
+        private string _workTypeDisplayer;
+        private string _workSystemDisplayer;
+        private string _workAgreementDisplayer;
 
         public Worker()
         {
@@ -104,5 +107,8 @@ namespace Grafik
         public char[] WorkDiagramDay { get => _workDiagramDay; set => _workDiagramDay = value; }
         public char[] WorkDiagramNight { get => _workDiagramNight; set => _workDiagramNight = value; }
         public string[] DiagramDisplayer { get => _diagramDisplayer; set => _diagramDisplayer = value; }
+        public string WorkTypeDisplayer { get => _workTypeDisplayer; set => _workTypeDisplayer = value; }
+        public string WorkSystemDisplayer { get => _workSystemDisplayer; set => _workSystemDisplayer = value; }
+        public string WorkAgreementDisplayer { get => _workAgreementDisplayer; set => _workAgreementDisplayer = value; }
     }
 }

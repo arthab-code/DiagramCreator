@@ -78,6 +78,12 @@ namespace Grafik
             workerManager = new WorkersManager();
             workerManager.LoadWorkersToList();
             WorkersListDisplay.ItemsSource = workerManager.Workers;
+            
+            if (WorkersListDisplay.SelectedItem == null)
+            {
+                WorkersListDisplay.SelectedIndex = 0;
+            }
+
         }
 
         private void DeleteWorker(object sender, RoutedEventArgs e)
@@ -193,6 +199,7 @@ namespace Grafik
             _dutyDisplayer.RefreshDisplayer(_calculatedMonthlyDays, GeneralDays, DriverDay, DriverNight, ExecutiveDay, ExecutiveNight);
 
             MessageBox.Show("Zmianieniono datę grafiku na : "+year.ToString()+" "+month.ToString());
+            DataDisplayer.Text = year.ToString() + "/" + month.ToString();
         }
 
         private void CalculateDuty()

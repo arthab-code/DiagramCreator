@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grafik"
         mc:Ignorable="d"
-        Title="AutoGrafik12" Height="450" Width="800">
+        Title="AutoGrafik12" Height="650" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -38,17 +38,12 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Grid.Row="1"  Grid.RowSpan="4" Grid.ColumnSpan="2">
-                        
-                    </ScrollViewer>
-                    <Button Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" Width="80" Height="20" Margin="4">Wyświetl</Button>
-                    <Button Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Left" Width="80" Height="20" Margin="4">Usuń</Button>
-                    <Rectangle Grid.Column="2" Grid.RowSpan="5" Grid.ColumnSpan="4" Fill="CadetBlue"></Rectangle>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4">
-                        Wybierz rok i miesiąc
+                    <Rectangle Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="6" Fill="CadetBlue"></Rectangle>
+                    <TextBlock x:Name="DataDisplayer"  FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4">
+                        Wybierz rok i miesiąc : 
                     </TextBlock>
-                    <Calendar x:Name="CalendarWPF" SelectedDatesChanged="SelectedDateChanges" DisplayMode="Year" Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
-                    <Button Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="4" Height="50" x:Name="GenerateDiagram" Click="GenerateDiagram_Click">GENERUJ GRAFIK</Button>
+                    <Calendar x:Name="CalendarWPF" SelectedDatesChanged="SelectedDateChanges" DisplayMode="Year" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"  Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
+                    <Button Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Height="50" x:Name="GenerateDiagram" Click="GenerateDiagram_Click">GENERUJ GRAFIK</Button>
                 </Grid>
             </TabItem>
             <TabItem Width="100" Header="Pracownicy">
@@ -85,9 +80,9 @@
                     <StackPanel Grid.Column="2" Grid.RowSpan="5"  Grid.ColumnSpan="4" Margin="10">
                         <TextBlock FontSize="18" FontWeight="Bold">Imię : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.Name}"></TextBlock></TextBlock>
                         <TextBlock FontSize="18" FontWeight="Bold">Nazwisko : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.Surname}"></TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">System pracy : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkSystem}"></TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Umowa : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.AgreementType}"></TextBlock></TextBlock>
-                        <TextBlock FontSize="18" FontWeight="Bold">Stanowisko : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkType}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">System pracy : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkSystemDisplayer}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Umowa : <TextBlock  FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkAgreementDisplayer}"></TextBlock></TextBlock>
+                        <TextBlock FontSize="18" FontWeight="Bold">Stanowisko : <TextBlock  FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkTypeDisplayer}"></TextBlock></TextBlock>
                         <TextBlock FontSize="18" FontWeight="Bold">Miejsce dyżurowania : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.WorkPlaceName}"></TextBlock></TextBlock>
                         <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Dzień: <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverDutyDay}"></TextBlock></TextBlock>
                         <TextBlock FontSize="18" FontWeight="Bold">Dyżury Kierowca Noc : <TextBlock FontWeight="Normal" Text="{Binding ElementName=WorkersListDisplay, Path=SelectedItem.DriverDutyNight}"></TextBlock></TextBlock>
@@ -156,8 +151,86 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="6" Fill="CadetBlue"></Rectangle>
                     <StackPanel Grid.Column="0" Grid.RowSpan="5"  Grid.ColumnSpan="6" Margin="10">
-                        <TextBlock FontSize="20"> TUTAJ BEDZIE POMOC NA TEMAT DZIAŁANIA</TextBlock>
-                        <TextBlock FontSize="20"> I UŻYTKOWANIA APLIKACJI</TextBlock>
+                        <ListView>
+                            <Expander Header="Jak wygenerować grafik?">
+                                <StackPanel>
+                                <Expander Header="Krok pierwszy">
+                                 Wybierz miejsce dyżurowania
+                                </Expander>
+                                 <Expander Header="Krok drugi">
+                                 Skonfiguruj odpowiednio pracowników (dodaj, edytuj)
+                                </Expander>
+                                <Expander Header="Krok trzeci">
+                                 Wybierz miesiąc i rok którego dotyczyć ma generator grafiku
+                                </Expander>
+                                 <Expander Header="Krok czwarty">
+                                 Kliknij "GENERUJ GRAFIK"
+                                </Expander>
+                                 <Expander Header="Krok piąty">
+                                 Jeśli pasuje Ci wygenerowany grafik - wydrukuj go do pliku PDF lub przez drukarkę. Grafik można generować tyle razy ile ma się na to ochotę.
+                                </Expander>
+                                 <Expander Header="Krok szósty">
+                                 Uzupełnij "ręcznie" braki w grafiku, które są zaznaczone przez program
+                                </Expander>
+                                </StackPanel>
+                            </Expander>
+                            <Expander Background="LightBlue" Header="Czy jest uwzględniany okres rozliczeniowy dla pracowników etatowych?">
+                                <TextBlock TextWrapping="Wrap">
+                                Program nie uwzględnia okresu rozliczeniowego pracowników etatowych
+                                </TextBlock>
+                            </Expander>
+                            <Expander Header="Czy program wypełnia wszystkie dyżury w grafiku?">
+                                <TextBlock TextWrapping="Wrap">
+                                Nie - jest to spowodowane zasadami wstawiania dyżurów (patrz niżej)
+                                </TextBlock>
+                            </Expander>
+                            <Expander Background="LightBlue" Header="W jaki sposób wstawiane są dyżury dla pracowników etatowych?">
+                                <TextBlock TextWrapping="Wrap">
+                                Pracownicy etatowi - przybliżenie systemu DZIEŃ-NOC 2 dni wolnego.
+                                </TextBlock>
+                            </Expander>
+                            <Expander Header="W jaki sposób wstawiane są dyżury dla pracowników kontraktowych?">
+                                <TextBlock TextWrapping="Wrap">
+                                Pracownicy kontraktowi - system dobowy i dwunasto godzinny. Po dyżurze nocnym nie może wystąpić dniówka oraz nie jest uwzględniana doba jako kierowca.
+                                </TextBlock>
+                            </Expander>
+                            <Expander Background="LightBlue" Header="Jak wpisywać dni wolne?">
+                                <TextBlock TextWrapping="Wrap">
+                                Dni wolne należy oddzielać znakiem przecinka (,). Jeśli pracownik ma L4 lub urlop obejmujący cały miesiąc - należy wyzerować mu wszystkie dyżury
+                                </TextBlock>
+                            </Expander>
+                            <Expander Header="Czy w programie są zapisane wygenerowane grafiki?">
+                                <TextBlock TextWrapping="Wrap">
+                                Nie są zapisywane - pasujący grafik można zapisać do PDF lub wydrukować
+                                </TextBlock>
+                            </Expander>
+                            <Expander Background="LightBlue" Header="Gdzie zobaczę, czy wszystkie dyżury  na wybranej karetce są wypełnione?">
+                                <TextBlock TextWrapping="Wrap">
+                                Służy do tego panel, który wyświetla się po prawej stronie
+                                </TextBlock>
+                            </Expander>
+                            <Expander  Header="Czemu służy program?">
+                                <TextBlock TextWrapping="Wrap">
+                                Program ma pomóc układać grafik osobom za to odpowiedzialnym. Należy pamiętać aby zweryfikować wygenerowany grafik.
+                                </TextBlock>
+                            </Expander>
+                            <Expander  Background="LightBlue" Header="Co się stanie gdy zmienię miesiąc?">
+                                <TextBlock TextWrapping="Wrap">
+                                Wymagana jest aktualizacja liczby dyżurów pracowników w panelu edycji (zaznacz konkretnego pracownika -> kliknij edytuj)
+                                </TextBlock>
+                            </Expander>
+                            <Expander  Header="Jak wybrać miesiąc?">
+                                <TextBlock TextWrapping="Wrap">
+                                W kalendarzu należy kliknąć dowolny dzień interesującego Ciebie miesiąca
+                                </TextBlock>
+                            </Expander>
+                            <Label></Label>
+                            <TextBlock>Wersja programu: beta (testowa) 0.1</TextBlock>
+                            <TextBlock>Autorzy :</TextBlock>
+                            <TextBlock>Wirginia Lach</TextBlock>
+                            <TextBlock>Artur Habrajski</TextBlock>
+                            <TextBlock>Uwagi / błędy proszę zgłaszać na adres e-mail: projekt.trading@gmail.com</TextBlock>
+                        </ListView>
                     </StackPanel>
                 </Grid>
             </TabItem>

@@ -67,38 +67,8 @@ namespace Grafik
                 tempWorker.ExecutiveDutyDay = int.Parse(streamReader.ReadLine());
                 tempWorker.ExecutiveDutyNight = int.Parse(streamReader.ReadLine());
 
-                /*
-                 *                 streamWriter.WriteLine(name);
-                streamWriter.WriteLine(surname);
-                streamWriter.WriteLine(agreementType);
-                streamWriter.WriteLine(workSystem);
-                streamWriter.WriteLine(workType);
-                streamWriter.WriteLine(workerPlaceName);          
-                streamWriter.WriteLine(driverHoursDay);
-                streamWriter.WriteLine(driverHoursNight);
-                streamWriter.WriteLine(executiveHoursDay);
-                streamWriter.WriteLine(executiveHoursNight);
-                 */
-
                 streamReader.Close();
 
-              /*  streamReader = new StreamReader(freeTimePath);
-
-                var countData = File.ReadAllLines(freeTimePath);
-
-                for(int i = 0; i < countData.Length; i++)
-                {
-                    tempWorker.FreeDays.Add(byte.Parse(streamReader.ReadLine()));
-                    
-                    if (i == countData.Length)
-                    {
-                        tempWorker.FreeDaysDisplay += streamReader.ReadLine().ToString();
-                        break;
-                    }
-                    tempWorker.FreeDaysDisplay += streamReader.ReadLine().ToString() + ",";
-                }
-
-                streamReader.Close(); */
             }
             catch (Exception e)
             {
@@ -124,7 +94,26 @@ namespace Grafik
                     var removeLastChar = tempWorker.FreeDaysDisplay.Remove(tempWorker.FreeDaysDisplay.Length - 1, 1);
                     tempWorker.FreeDaysDisplay = removeLastChar;
                 }
-            } 
+            }
+
+            /* Workers information enum parse to string displayer */
+            if (tempWorker.WorkType == WorkType.Hybrid)
+                tempWorker.WorkTypeDisplayer = "Ratownik-Kierowca";
+            else if (tempWorker.WorkType == WorkType.Driver)
+                tempWorker.WorkTypeDisplayer = "Kierowca";
+            else if (tempWorker.WorkType == WorkType.Executive)
+                tempWorker.WorkTypeDisplayer = "Kierownik ZRM";
+
+            if (tempWorker.WorkSystem == WorkSystem.FullDuty)
+                tempWorker.WorkSystemDisplayer = "24h";
+            else if (tempWorker.WorkSystem == WorkSystem.HalfDuty)
+                tempWorker.WorkSystemDisplayer = "12h";
+
+            if (tempWorker.AgreementType == AgreementType.Permanent)
+                tempWorker.WorkAgreementDisplayer = "Etat";
+            else if (tempWorker.AgreementType == AgreementType.Other)
+                tempWorker.WorkAgreementDisplayer = "Kontrakt";
+            /* Workers information enum parse to string displayer -- end */
             return tempWorker;
         }
 
