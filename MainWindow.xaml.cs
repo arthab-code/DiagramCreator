@@ -216,8 +216,22 @@ namespace Grafik
 
         private void GenerateDiagram_Click(object sender, RoutedEventArgs e)
         {
+
+            if (int.Parse(GeneralDays.Text) != 0)
+            {
+                MessageBox.Show("Nieprawidłowa liczba obstawionych dyżurów : " + GeneralDays.Text);
+                return;
+            }
+
+            if (calendar == null)
+            {
+                MessageBox.Show("Konieczne jest wybranie odpowiedniego miesiąca aby wygenerować grafik");
+                return;
+            }
+
             int month = calendar.SelectedDate.Value.Month;
             int year = calendar.SelectedDate.Value.Year;
+
             int days = DateTime.DaysInMonth(year, month);
             WorkDiagram workDiagram = new WorkDiagram(days);
             DiagramSetter diagramSetter = new DiagramSetter(workerManager.Workers, workDiagram);
@@ -225,7 +239,7 @@ namespace Grafik
             permDiagram.Create(SelectedWorkPlace.Text);
             OtherDiagramCreator otherDiagram = new OtherDiagramCreator(workDiagram);
             otherDiagram.Create(SelectedWorkPlace.Text);
-            DiagramShowHelper dsh = new DiagramShowHelper();
+            DiagramShowHelper dsh = new DiagramShowHelper(year, month);
             dsh.SetDiagramCreator(workerManager.Workers, workDiagram, WorkPlaces.SelectedItem.ToString());
             dsh.ShowDialog();
             RefreshWorkersList();

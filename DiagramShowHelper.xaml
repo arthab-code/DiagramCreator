@@ -5,33 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Grafik"
         mc:Ignorable="d"
-        Title="DiagramShowHelper" Height="600" Width="1500">
+        Title="Generator Grafiku" Height="600" Width="1500">
     <Grid>
         <StackPanel>
-            <ListView x:Name="DiagramDisplayer">
-                <ListView.View>
-                    <GridView x:Name="Columns">
-                        <GridView.Columns>
-                            <GridViewColumn Width="80" Header="Imię" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                            <GridViewColumn Width="80" Header="Nazwisko" DisplayMemberBinding="{Binding Surname}"></GridViewColumn>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Button x:Name="Print" Click="Print_Click">Print</Button>
-            <TextBox>Nie obsadzone dyżury: </TextBox>
-            <TextBox>Kierowca dzień:</TextBox>
-            <TextBox x:Name="driverDayWarning"></TextBox>
+            <StackPanel x:Name="PrintDisplayer">
+                <TextBox HorizontalAlignment="Center" FontSize="30" x:Name="DataDisplayer"></TextBox>
+                <ListView x:Name="DiagramDisplayer">
+                    <ListView.View>
+                        <GridView x:Name="Columns">
+                            <GridView.Columns>
+                                <GridViewColumn Width="80" Header="Imię" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                <GridViewColumn Width="80" Header="Nazwisko" DisplayMemberBinding="{Binding Surname}"></GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <TextBox FontSize="15">Dyżury bez obsady:</TextBox>
+                <TextBox></TextBox>
+                <TextBox>Kierowca dzień:</TextBox>
+                <TextBox x:Name="driverDayWarning"></TextBox>
 
-            <TextBox>Kierowca noc:</TextBox>
-            <TextBox x:Name="driverNightWarning"></TextBox>
+                <TextBox>Kierowca noc:</TextBox>
+                <TextBox x:Name="driverNightWarning"></TextBox>
 
-            <TextBox>Kierownik dzień:</TextBox>
-            <TextBox x:Name="executiveDayWarning"></TextBox>
+                <TextBox>Kierownik dzień:</TextBox>
+                <TextBox x:Name="executiveDayWarning"></TextBox>
 
-            <TextBox>Kierownik noc:</TextBox>
-            <TextBox x:Name="executiveNightWarning"></TextBox>
+                <TextBox>Kierownik noc:</TextBox>
+                <TextBox x:Name="executiveNightWarning"></TextBox>
 
+            </StackPanel>
+            <Button x:Name="Print" Click="Print_Click">Drukuj / Zapisz do PDF</Button>
         </StackPanel>
     </Grid>
 </Window>

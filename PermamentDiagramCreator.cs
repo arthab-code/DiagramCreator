@@ -81,7 +81,7 @@ namespace Grafik
                     }
                     CheckAndCorrectStepDutyRange();
 
-                    if (item.DriverDutyDay <= 0)
+                    if (item.DriverDutyDay <= 0 && item.ExecutiveDutyDay > 0)
                     {
 
                         /* Executive day setter */

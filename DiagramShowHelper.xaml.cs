@@ -21,10 +21,11 @@ namespace Grafik
     {
         private List<Worker> _workers;
         private WorkDiagram _workDiagram;
-        public DiagramShowHelper()
+        public DiagramShowHelper(int year, int month)
         {
             InitializeComponent();
             DataContext = this;
+            DataDisplayer.Text = "Miesiąc : " + month.ToString() + " Rok : " + year.ToString();
         }
 
         public void SetDiagramCreator(List<Worker> workers, WorkDiagram workDiagram, string workPlace)
@@ -72,7 +73,7 @@ namespace Grafik
 
             if (pD.ShowDialog() == true)
             {
-                pD.PrintVisual(DiagramDisplayer, "Diagram");
+                pD.PrintVisual(PrintDisplayer, "Diagram");
             }
         }
 
