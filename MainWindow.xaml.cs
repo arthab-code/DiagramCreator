@@ -246,7 +246,7 @@ namespace Grafik
             permDiagram.Create(SelectedWorkPlace.Text);
             OtherDiagramCreator otherDiagram = new OtherDiagramCreator(workDiagram);
             otherDiagram.Create(SelectedWorkPlace.Text);
-            DiagramShowHelper dsh = new DiagramShowHelper(year, month);
+            DiagramShowHelper dsh = new DiagramShowHelper(year, month, WorkPlaces.SelectedItem.ToString());
             dsh.SetDiagramCreator(workerManager.Workers, workDiagram, WorkPlaces.SelectedItem.ToString());
             dsh.ShowDialog();
             RefreshWorkersList();

@@ -240,9 +240,9 @@
         <StackPanel HorizontalAlignment="Center" Grid.Column="3" Grid.RowSpan="3">
             <TextBlock></TextBlock>
             <TextBlock></TextBlock>
-            <TextBlock FontWeight="Bold">Wybrane miejsce dyżurów:</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold">MIEJSCE DYŻUROWANIA:</TextBlock>
             <TextBlock x:Name="SelectedWorkPlace" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Text="{Binding ElementName=WorkPlaces, Path=SelectedItem}"></TextBlock>
-            <TextBlock FontWeight="Bold">LICZBA DYŻURÓW W MIESIĄCU</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold">ILOŚĆ NIEPRZYPISANYCH DYŻURÓW</TextBlock>
             <TextBlock x:Name="GeneralDays" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold">31</TextBlock>
             <TextBlock></TextBlock>
             <TextBlock FontWeight="Bold">KIEROWCA DZIEŃ</TextBlock>

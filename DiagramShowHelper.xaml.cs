@@ -21,11 +21,11 @@ namespace Grafik
     {
         private List<Worker> _workers;
         private WorkDiagram _workDiagram;
-        public DiagramShowHelper(int year, int month)
+        public DiagramShowHelper(int year, int month, string workPlace)
         {
             InitializeComponent();
             DataContext = this;
-            DataDisplayer.Text = "Miesiąc : " + month.ToString() + " Rok : " + year.ToString();
+            DataDisplayer.Text = "Miesiąc : " + month.ToString() + " Rok : " + year.ToString() + "/ ZESPÓŁ : "+workPlace;
         }
 
         public void SetDiagramCreator(List<Worker> workers, WorkDiagram workDiagram, string workPlace)
